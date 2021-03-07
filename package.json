@@ -1,7 +1,7 @@
 {
-  "name": "twig-drupal-filters",
-  "version": "3.1.2",
-  "description": "Drupal's Twig filters, implemented for Twig.js",
+  "name": "drupal-twig-shim",
+  "version": "1.x",
+  "description": "JavaScript implementation of Drupal's Twig extensions",
   "main": "index.js",
   "files": [
     "filters",
@@ -16,15 +16,15 @@
     "Drupal",
     "Twig"
   ],
-  "author": "Kalamuna (http://kalamuna.com)",
-  "license": "MIT",
+  "author": "John Albin Wilkins <virtually.johnalbin@gmail.com> (http://john.albin.net/)",
+  "license": "(MIT OR GPL-2.0)",
   "devDependencies": {
-    "mocha": "^7.2.0",
+    "mocha": "^8.3.1",
     "xo": "*"
   },
   "dependencies": {
     "object-keys": "^1.1.1",
-    "twig": "^1.15.1"
+    "twig": "^1.15.4"
   },
   "xo": {
     "rules": {
