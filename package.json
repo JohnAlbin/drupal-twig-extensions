@@ -1,6 +1,6 @@
 {
   "name": "drupal-twig-shim",
-  "version": "1.x",
+  "version": "1.0.0-alpha1",
   "description": "JavaScript implementation of Drupal's Twig extensions",
   "main": "index.js",
   "files": [
