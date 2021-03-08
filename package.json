@@ -19,8 +19,9 @@
   "license": "(MIT OR GPL-2.0)",
   "devDependencies": {
     "mocha": "^8.3.1",
-  "dependencies": {
     "twig": "^1.15.4"
   },
+  "peerDependencies": {
+    "twig": "^1.15.4"
   }
 }
