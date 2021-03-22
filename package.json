@@ -4,8 +4,7 @@
   "description": "JavaScript implementation of Drupal's Twig extensions",
   "main": "index.js",
   "files": [
-    "filters",
-    "functions",
+    "lib",
     "index.js"
   ],
   "scripts": {
