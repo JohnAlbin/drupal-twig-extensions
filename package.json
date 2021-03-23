@@ -14,16 +14,19 @@
   },
   "keywords": [
     "Drupal",
-    "Twig"
+    "Twig",
+    "Twing"
   ],
-  "author": "John Albin Wilkins <virtually.johnalbin@gmail.com> (http://john.albin.net/)",
+  "author": "John Albin Wilkins <virtually.johnalbin@gmail.com> (https://john.albin.net/)",
   "license": "(MIT OR GPL-2.0)",
   "devDependencies": {
-    "mocha": "^8.3.1",
+    "mocha": "^8.3.2",
     "prettier": "^2.2.1",
-    "twig": "^1.15.4"
+    "twig": "^1.15.4",
+    "twing": "github:JohnAlbin/twing#ec84b07214c1e5316a162ee0c714a832140268a6"
   },
-  "peerDependencies": {
-    "twig": "^1.15.4"
+  "optionalPeerDependencies": {
+    "twig": "^1.15.4",
+    "twing": "github:JohnAlbin/twing#ec84b07214c1e5316a162ee0c714a832140268a6"
   }
 }

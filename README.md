@@ -2,15 +2,29 @@
 
 ## Usage
 
-``` javascript
-var Twig = require('twig')
-var addDrupalExtensions = require('drupal-twig-shim')
+If you use Twing:
+
+```javascript
+var { TwingEnvironment } = require('twing');
+var addDrupalExtensions = require('drupal-twig-extensions');
+
+// Add the extensions for Drupal.
+addDrupalExtensions(TwingEnvironment);
+```
+
+If you use Twig.js:
+
+```javascript
+var Twig = require('twig');
+var addDrupalExtensions = require('drupal-twig-extensions');
 
 // Add the extensions for Drupal.
 addDrupalExtensions(Twig);
 ```
 
-``` twig
+In your Twig templates, you can now use the Drupal extensions documented later in this README.
+
+```twig
 {{ 'Hello World!'|clean_id }}
 ```
 
@@ -33,8 +47,8 @@ A comprehensive list of the filters is [available here](http://www.opin.ca/en/ar
 
 ### Functions
 
--   link
--   active_theme*
--   attach_library*
+- link
+- active_theme\*
+- attach_library\*
 
-_*These are dummy functions that don't do anything except keep Twig.js compilation from breaking when these Drupal-specific functions are used in Drupal Twig templates._
+_\*These are dummy functions that don't do anything except keep Twig.js compilation from breaking when these Drupal-specific functions are used in Drupal Twig templates._

@@ -4,6 +4,11 @@
  * @param {Twig} twigImplementation The implementation of Twig to modify.
  */
 module.exports = function (twigImplementation) {
-  const addToTwig = require('./lib/addToTwig');
-  addToTwig(twigImplementation);
+  if (typeof twigImplementation.extendFilter === 'function') {
+    const addToTwig = require('./lib/addToTwig');
+    addToTwig(twigImplementation);
+  } else {
+    const addToTwing = require('./lib/addToTwing');
+    addToTwing(twigImplementation);
+  }
 };
