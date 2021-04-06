@@ -2,7 +2,7 @@
 
 ## Usage
 
-If you use Twing:
+If you use Twing: (does not work yet)
 
 ```javascript
 var Twing,

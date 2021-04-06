@@ -3,11 +3,15 @@
   "version": "1.0.0-alpha1",
   "description": "JavaScript implementation of Drupal's Twig extensions",
   "files": [
-    "lib",
-    "twig",
-    "twing"
+    "dist/",
+    "twig.js",
+    "twing.js",
+    "README.md"
   ],
   "scripts": {
+    "build": "npm run clean && babel -d dist lib/",
+    "clean": "rimraf dist/*",
+    "prepare": "npm run build",
     "format": "prettier --write \"{.*/**/*,*,**/*}.{js,jsx,ts,tsx,json,md,yml,css,scss}\"",
     "format:check": "prettier --check \"{.*/**/*,*,**/*}.{js,jsx,ts,tsx,json,md,yml,css,scss}\"",
     "test": "mocha --reporter spec"
@@ -18,15 +22,31 @@
     "Twing"
   ],
   "author": "John Albin Wilkins <virtually.johnalbin@gmail.com> (https://john.albin.net/)",
-  "license": "(MIT OR GPL-2.0)",
+  "license": "(MIT OR GPL-2.0-only)",
   "devDependencies": {
+    "@babel/cli": "^7.13.14",
+    "@babel/core": "^7.13.14",
+    "@babel/preset-env": "^7.13.12",
     "mocha": "^8.3.2",
     "prettier": "^2.2.1",
+    "rimraf": "^3.0.2",
     "twig": "^1.15.4",
-    "twing": "github:JohnAlbin/twing#loaders"
+    "twing": "^5.0.2"
   },
   "optionalPeerDependencies": {
     "twig": "^1.15.4",
-    "twing": "github:JohnAlbin/twing#loaders"
+    "twing": "^5.0.2"
+  },
+  "babel": {
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "node": "10"
+          }
+        }
+      ]
+    ]
   }
 }

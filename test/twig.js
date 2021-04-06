@@ -1,12 +1,12 @@
 const assert = require('assert');
 const twigPackage = require('twig');
-const twigFilters = require('..');
+const { addDrupalExtensions } = require('../twig');
 
 const twig = twigPackage.twig;
 
 describe('twig.js', function () {
   // Add the Twig Filters to Twig
-  twigFilters(twigPackage);
+  addDrupalExtensions(twigPackage);
 
   /**
    * Tests the clean_class filter.
