@@ -5,18 +5,27 @@
 If you use Twing:
 
 ```javascript
-var { TwingEnvironment } = require('twing');
-var addDrupalExtensions = require('drupal-twig-extensions');
+var Twing,
+  { TwingEnvironment, TwingLoaderRelativeFilesystem } = require('twing');
+var { addDrupalExtensions } = require('drupal-twig-extensions/twing');
+
+// Create an instance of the Twing Environment.
+const twingEnvironment = new TwingEnvironment(
+  new TwingLoaderRelativeFilesystem(),
+);
 
 // Add the extensions for Drupal.
-addDrupalExtensions(TwingEnvironment);
+addDrupalExtensions(twingEnvironment);
+
+// If you use twing-loader, it will need access to the same twing environment.
+module.exports = twingEnvironment;
 ```
 
 If you use Twig.js:
 
 ```javascript
 var Twig = require('twig');
-var addDrupalExtensions = require('drupal-twig-extensions');
+var { addDrupalExtensions } = require('drupal-twig-extensions/twig');
 
 // Add the extensions for Drupal.
 addDrupalExtensions(Twig);
