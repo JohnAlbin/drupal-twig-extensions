@@ -8,6 +8,7 @@
     "twing.js",
     "README.md"
   ],
+  "main": "./dist/index.js",
   "scripts": {
     "build": "npm run clean && babel -d dist lib/",
     "clean": "rimraf dist/*",
@@ -48,5 +49,8 @@
         }
       ]
     ]
+  },
+  "dependencies": {
+    "drupal-attribute": "^1.0.2"
   }
 }

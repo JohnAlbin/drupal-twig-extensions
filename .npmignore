@@ -42,3 +42,4 @@ _vti_*
 .travis.yml
 /coverage
 /test
+/dist/.gitkeep
