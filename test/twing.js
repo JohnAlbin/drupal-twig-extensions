@@ -1,12 +1,16 @@
 const assert = require('assert');
-const twigPackage = require('twig');
-const { addDrupalExtensions } = require('../twig');
+const { TwingEnvironment, TwingLoaderRelativeFilesystem } = require('twing');
+const { addDrupalExtensions } = require('../twing');
 
-const twig = twigPackage.twig;
+// Create an instance of the Twing Environment.
+const twingEnvironment = new TwingEnvironment(
+  new TwingLoaderRelativeFilesystem(),
+  { autoescape: false },
+);
 
-describe('Twig.js', function () {
-  // Add the Twig Filters to Twig
-  addDrupalExtensions(twigPackage);
+describe('Twing', function () {
+  // Add the extensions for Drupal.
+  addDrupalExtensions(twingEnvironment);
 
   /**
    * Tests the clean_class filter.
@@ -14,7 +18,7 @@ describe('Twig.js', function () {
    * @see \Drupal\Tests\Component\Utility\testCleanCssIdentifier
    * @see \Drupal\Tests\Component\Utility\testHtmlClass
    */
-  it('should use the clean_class filter', function (done) {
+  it('should use the clean_class filter', async function () {
     let tests = [
       // Verify that no valid ASCII characters are stripped from the identifier.
       {
@@ -64,19 +68,17 @@ describe('Twig.js', function () {
       },
     ];
 
-    let template = twig({
-      data: '{{ value|clean_class }}',
-    });
+    const template = await twingEnvironment.createTemplate(
+      '{{ value|clean_class }}',
+    );
 
-    let outputs = tests.map(function (test) {
-      return template.render(test.data);
-    });
-
-    outputs.forEach(function (output, index) {
-      assert.strictEqual(output, tests[index].expected);
-    });
-
-    done();
+    return Promise.all(
+      tests.map((test, index) =>
+        template.render(test.data).then((output) => {
+          assert.strictEqual(output, tests[index].expected);
+        }),
+      ),
+    );
   });
 
   /**
@@ -84,7 +86,7 @@ describe('Twig.js', function () {
    *
    * @see \Drupal\Tests\Component\Utility\testHtmlGetId
    */
-  it('should use the clean_id filter', function (done) {
+  it('should use the clean_id filter', async function () {
     let tests = [
       // Verify that letters, digits, and hyphens are not stripped from the ID.
       {
@@ -112,19 +114,17 @@ describe('Twig.js', function () {
       },
     ];
 
-    let template = twig({
-      data: '{{ value|clean_id }}',
-    });
+    const template = await twingEnvironment.createTemplate(
+      '{{ value|clean_id }}',
+    );
 
-    let outputs = tests.map(function (test) {
-      return template.render(test.data);
-    });
-
-    outputs.forEach(function (output, index) {
-      assert.strictEqual(output, tests[index].expected);
-    });
-
-    done();
+    return Promise.all(
+      tests.map((test, index) =>
+        template.render(test.data).then((output) => {
+          assert.strictEqual(output, tests[index].expected);
+        }),
+      ),
+    );
   });
 
   /**
@@ -132,7 +132,7 @@ describe('Twig.js', function () {
    *
    * @see \Drupal\Tests\Kernel/Theme/TwigFilterTest
    */
-  it('should use the without filter', function (done) {
+  it('should use the without filter', async function () {
     // The variables to pass to the templates.
     const data = {
       quote: {
@@ -144,37 +144,35 @@ describe('Twig.js', function () {
     };
 
     // No author
-    let template = twig({
-      data: 'No author: {{ quote|without("author")|join }}',
-    });
-    let output = template.render(data);
+    let template = await twingEnvironment.createTemplate(
+      'No author: {{ quote|without("author")|join }}',
+    );
+    let output = await template.render(data);
     assert.strictEqual(
       output,
       'No author: You can only find truth with logic if you have already found truth without it.1874-1936',
     );
 
     // Just author
-    template = twig({
-      data: 'Just author: {{ quote|without("content", "date")|join }}',
-    });
-    output = template.render(data);
+    template = await twingEnvironment.createTemplate(
+      'Just author: {{ quote|without("content", "date")|join }}',
+    );
+    output = await template.render(data);
     assert.strictEqual(output, 'Just author: Gilbert Keith Chesterton');
 
     // No input
-    template = twig({
-      data: 'No input: {{ nothing|without("content", "date")|join }}',
-    });
-    output = template.render(data);
+    template = await twingEnvironment.createTemplate(
+      'No input: {{ nothing|without("content", "date")|join }}',
+    );
+    output = await template.render(data);
     assert.strictEqual(output, 'No input: ');
-
-    done();
   });
 
-  it('should create a link', function (done) {
-    let template = twig({
-      data: 'Visit my {{ link(title, url, attributes) }}!',
-    });
-    let output = template.render({
+  it('should create a link', async function () {
+    const template = await twingEnvironment.createTemplate(
+      'Visit my {{ link(title, url, attributes) }}!',
+    );
+    let output = await template.render({
       title: 'Website',
       url: 'http://example.com',
       attributes: {
@@ -186,7 +184,7 @@ describe('Twig.js', function () {
       'Visit my <a href="http://example.com" class="foo bar baz">Website</a>!',
     );
 
-    output = template.render({
+    output = await template.render({
       title: 'Site',
       url: 'http://example.com',
       attributes: {
@@ -197,6 +195,5 @@ describe('Twig.js', function () {
       output,
       'Visit my <a href="http://example.com" class="awesome">Site</a>!',
     );
-    done();
   });
 });
