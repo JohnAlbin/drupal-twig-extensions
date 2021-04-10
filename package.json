@@ -2,6 +2,13 @@
   "name": "drupal-twig-extensions",
   "version": "1.0.0-alpha.4",
   "description": "JavaScript implementation of Drupal's Twig extensions",
+  "author": "John Albin Wilkins <virtually.johnalbin@gmail.com> (https://john.albin.net/)",
+  "license": "(MIT OR GPL-2.0-only)",
+  "keywords": [
+    "Drupal",
+    "Twig",
+    "Twing"
+  ],
   "files": [
     "dist/",
     "twig.js",
@@ -17,13 +24,13 @@
     "format:check": "prettier --check \"{.*/**/*,*,**/*}.{js,jsx,ts,tsx,json,md,yml,css,scss}\"",
     "test": "npm run prepare && mocha --reporter spec"
   },
-  "keywords": [
-    "Drupal",
-    "Twig",
-    "Twing"
-  ],
-  "author": "John Albin Wilkins <virtually.johnalbin@gmail.com> (https://john.albin.net/)",
-  "license": "(MIT OR GPL-2.0-only)",
+  "dependencies": {
+    "drupal-attribute": "^1.0.2"
+  },
+  "optionalPeerDependencies": {
+    "twig": "^1.15.4",
+    "twing": "^5.0.2"
+  },
   "devDependencies": {
     "@babel/cli": "^7.13.14",
     "@babel/core": "^7.13.14",
@@ -31,10 +38,6 @@
     "mocha": "^8.3.2",
     "prettier": "^2.2.1",
     "rimraf": "^3.0.2",
-    "twig": "^1.15.4",
-    "twing": "^5.0.2"
-  },
-  "optionalPeerDependencies": {
     "twig": "^1.15.4",
     "twing": "^5.0.2"
   },
@@ -49,8 +52,5 @@
         }
       ]
     ]
-  },
-  "dependencies": {
-    "drupal-attribute": "^1.0.2"
   }
 }
