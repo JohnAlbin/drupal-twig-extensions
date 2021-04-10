@@ -1,6 +1,6 @@
 {
   "name": "drupal-twig-extensions",
-  "version": "1.0.0-alpha.3",
+  "version": "1.0.0-alpha.4",
   "description": "JavaScript implementation of Drupal's Twig extensions",
   "files": [
     "dist/",
