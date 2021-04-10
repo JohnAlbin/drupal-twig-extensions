@@ -21,6 +21,10 @@
     "build": "npm run clean && babel -d dist lib/",
     "clean": "rimraf dist/*",
     "prepare": "npm run build",
+    "release": "standard-version",
+    "release:alpha": "standard-version --prerelease alpha",
+    "release:beta": "standard-version --prerelease beta",
+    "release:rc": "standard-version --prerelease rc",
     "release:inspect": "npm run prepare && npx npm-packlist",
     "format": "prettier --write \"{.*/**/*,*,**/*}.{js,jsx,ts,tsx,json,md,yml,css,scss}\"",
     "format:check": "prettier --check \"{.*/**/*,*,**/*}.{js,jsx,ts,tsx,json,md,yml,css,scss}\"",
@@ -40,6 +44,7 @@
     "mocha": "^8.3.2",
     "prettier": "^2.2.1",
     "rimraf": "^3.0.2",
+    "standard-version": "^9.2.0",
     "twig": "^1.15.4",
     "twing": "^5.0.2"
   },
