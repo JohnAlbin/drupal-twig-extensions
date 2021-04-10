@@ -14,14 +14,14 @@
   "files": [
     "dist/",
     "twig.js",
-    "twing.js",
-    "README.md"
+    "twing.js"
   ],
   "main": "./dist/index.js",
   "scripts": {
     "build": "npm run clean && babel -d dist lib/",
     "clean": "rimraf dist/*",
     "prepare": "npm run build",
+    "release:inspect": "npm run prepare && npx npm-packlist",
     "format": "prettier --write \"{.*/**/*,*,**/*}.{js,jsx,ts,tsx,json,md,yml,css,scss}\"",
     "format:check": "prettier --check \"{.*/**/*,*,**/*}.{js,jsx,ts,tsx,json,md,yml,css,scss}\"",
     "test": "npm run prepare && mocha --reporter spec"
