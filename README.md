@@ -96,7 +96,7 @@ The [official list of functions is in Drupal 9’s code](https://api.drupal.org/
 
 ### Tags
 
-**WARNING: These have not yet been implemented in this project.**
+NOTE: Tags have not yet been implemented in this project.
 
 The [official list of tags is in Drupal 9’s code](https://api.drupal.org/api/drupal/core%21lib%21Drupal%21Core%21Template%21TwigExtension.php/function/TwigExtension%3A%3AgetTokenParsers/9).
 
