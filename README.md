@@ -31,13 +31,12 @@ addDrupalExtensions(Twig);
 
 ### Twing
 
-**WARNING: Does not work yet**
+**WARNING: Not fully tested**
 
 If you use Twing, use the following JavaScript to integrate with Twing:
 
 ```javascript
-var Twing,
-  { TwingEnvironment, TwingLoaderRelativeFilesystem } = require('twing');
+var { TwingEnvironment, TwingLoaderRelativeFilesystem } = require('twing');
 var { addDrupalExtensions } = require('drupal-twig-extensions/twing');
 
 // Create an instance of the Twing Environment.
