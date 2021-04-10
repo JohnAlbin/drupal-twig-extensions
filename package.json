@@ -15,7 +15,7 @@
     "prepare": "npm run build",
     "format": "prettier --write \"{.*/**/*,*,**/*}.{js,jsx,ts,tsx,json,md,yml,css,scss}\"",
     "format:check": "prettier --check \"{.*/**/*,*,**/*}.{js,jsx,ts,tsx,json,md,yml,css,scss}\"",
-    "test": "mocha --reporter spec"
+    "test": "npm run prepare && mocha --reporter spec"
   },
   "keywords": [
     "Drupal",
