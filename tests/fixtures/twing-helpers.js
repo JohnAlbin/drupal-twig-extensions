@@ -19,7 +19,7 @@ const renderTemplateMacro = async (t, options) => {
     options.template,
   );
 
-  let actual = await compiledTemplate.render(options.data);
+  let actual = await compiledTemplate.render(options.data || {});
 
   t.is(actual, options.expected);
 };
