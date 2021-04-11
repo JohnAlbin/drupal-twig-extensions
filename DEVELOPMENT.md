@@ -9,15 +9,17 @@ Format: `<type>(<scope>): <subject>`
 ## Example
 
 ```
-feat: add hat wobble
+feat: Add hat wobble
 ^--^  ^------------^
 |     |
 |     +-> Summary in present tense.
+|         Starts with capital letter.
+|         Doesn't end in period.
 |
 +-------> Type: chore, docs, feat, fix, refactor, style, or test.
 ```
 
-More Examples:
+Examples of <type>:
 
 - `feat`: (new feature for the user, not a new feature for build script)
 - `fix`: (bug fix for the user, not a fix to a build script)

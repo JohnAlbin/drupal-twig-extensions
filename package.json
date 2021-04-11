@@ -28,7 +28,8 @@
     "release:inspect": "npm run prepare && npx npm-packlist",
     "format": "prettier --write \"{.*/**/*,*,**/*}.{js,jsx,ts,tsx,json,md,yml,css,scss}\"",
     "format:check": "prettier --check \"{.*/**/*,*,**/*}.{js,jsx,ts,tsx,json,md,yml,css,scss}\"",
-    "test": "npm run prepare && mocha --reporter spec"
+    "pretest": "npm run prepare",
+    "test": "nyc ava"
   },
   "dependencies": {
     "drupal-attribute": "^1.0.2"
@@ -38,26 +39,35 @@
     "twing": "^5.0.2"
   },
   "devDependencies": {
+    "@ava/babel": "^1.0.1",
     "@babel/cli": "^7.13.14",
     "@babel/core": "^7.13.14",
     "@babel/preset-env": "^7.13.12",
-    "mocha": "^8.3.2",
+    "ava": "^3.15.0",
+    "coveralls": "^3.1.0",
+    "nyc": "^15.1.0",
     "prettier": "^2.2.1",
     "rimraf": "^3.0.2",
     "standard-version": "^9.2.0",
     "twig": "^1.15.4",
     "twing": "^5.0.2"
   },
-  "babel": {
-    "presets": [
-      [
-        "@babel/preset-env",
-        {
-          "targets": {
-            "node": "10"
-          }
-        }
-      ]
+  "ava": {
+    "babel": true,
+    "verbose": true
+  },
+  "nyc": {
+    "exclude": [
+      "node_modules",
+      "tests"
+    ],
+    "check-coverage": true,
+    "functions": 85,
+    "lines": 97,
+    "branches": 71,
+    "reporter": [
+      "text-summary",
+      "lcov"
     ]
   }
 }

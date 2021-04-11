@@ -37,4 +37,8 @@ _vti_*
 /yarn-debug.log
 
 # Exclude the distrubution files built with Babel.
-dist/
+/dist/
+
+# Exclude code coverage files.
+/.nyc_output/
+/coverage/
