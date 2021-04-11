@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0-alpha.6](https://github.com/JohnAlbin/drupal-twig-extensions/compare/v1.0.0-alpha.5...v1.0.0-alpha.6) (2021-04-11)
+
+
+### Bug Fixes
+
+* active_theme_path and active_theme should return strings ([2036335](https://github.com/JohnAlbin/drupal-twig-extensions/commit/20363350c538adb3c330d214222e9e04298e0d0f)), closes [#12](https://github.com/JohnAlbin/drupal-twig-extensions/issues/12)
+
 ## [1.0.0-alpha.5](https://github.com/JohnAlbin/drupal-twig-extensions/compare/v1.0.0-alpha.4...v1.0.0-alpha.5) (2021-04-10)
 
 ### Features
