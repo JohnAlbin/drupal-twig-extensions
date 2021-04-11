@@ -20,7 +20,7 @@ Then install this project with:<br />
 
 ## Usage
 
-### Twig.js
+### Twig.js 1.15.0 or later
 
 If you use Twig.js, use the following JavaScript to integrate with Twig:
 
@@ -32,9 +32,7 @@ var { addDrupalExtensions } = require('drupal-twig-extensions/twig');
 addDrupalExtensions(Twig);
 ```
 
-### Twing
-
-**WARNING: Not fully tested**
+### Twing 5.0.2 or later
 
 If you use Twing, use the following JavaScript to integrate with Twing:
 
