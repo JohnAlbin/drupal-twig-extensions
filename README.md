@@ -11,12 +11,12 @@ This project is the JavaScript port of Drupal 9’s Twig extensions for use with
 
 In order for this project to work, you **must install either Twig.js or Twing**.
 
-To install Twig.js: `npm install --dev twig`
+To install Twig.js: `npm install --save-dev twig`
 
-To install Twing: `npm install --dev twing`
+To install Twing: `npm install --save-dev twing`
 
 Then install this project with:<br />
-`npm install --dev drupal-twig-extensions`
+`npm install --save-dev drupal-twig-extensions`
 
 ## Usage
 
