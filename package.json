@@ -39,18 +39,18 @@
     "twing": "^5.0.2"
   },
   "devDependencies": {
-    "@ava/babel": "^1.0.1",
-    "@babel/cli": "^7.13.14",
-    "@babel/core": "^7.13.14",
-    "@babel/preset-env": "^7.13.12",
+    "@ava/babel": "^2.0.0",
+    "@babel/cli": "^7.16.0",
+    "@babel/core": "^7.16.0",
+    "@babel/preset-env": "^7.16.4",
     "ava": "^3.15.0",
-    "coveralls": "^3.1.0",
+    "coveralls": "^3.1.1",
     "nyc": "^15.1.0",
-    "prettier": "^2.2.1",
+    "prettier": "^2.5.1",
     "rimraf": "^3.0.2",
-    "standard-version": "^9.2.0",
+    "standard-version": "^9.3.2",
     "twig": "^1.15.4",
-    "twing": "^5.0.2"
+    "twing": "^5.1.0"
   },
   "ava": {
     "babel": true,
