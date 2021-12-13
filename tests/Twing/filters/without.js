@@ -36,6 +36,16 @@ test.failing(
   },
 );
 
+test.failing(
+  'should handle arrays of elements to exclude',
+  renderTemplateMacro,
+  {
+    template: 'Just author: {{ quote|without(["content", "date"])|join }}',
+    data,
+    expected: 'Just author: Gilbert Keith Chesterton',
+  },
+);
+
 test('should handle an undefined input', renderTemplateMacro, {
   template: 'No input: {{ nothing|without("content", "date")|join }}',
   data,
