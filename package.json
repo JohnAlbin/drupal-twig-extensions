@@ -32,7 +32,8 @@
     "test": "nyc ava"
   },
   "dependencies": {
-    "drupal-attribute": "^1.0.2"
+    "drupal-attribute": "^1.0.2",
+    "lodash.clonedeep": "^4.5.0"
   },
   "optionalPeerDependencies": {
     "twig": "^1.15.4",
@@ -62,9 +63,9 @@
       "tests"
     ],
     "check-coverage": true,
-    "functions": 88,
-    "lines": 97,
-    "branches": 71,
+    "functions": 91,
+    "lines": 98,
+    "branches": 72,
     "reporter": [
       "text-summary",
       "lcov"

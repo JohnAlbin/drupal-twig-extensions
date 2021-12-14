@@ -3,6 +3,7 @@ import {
   setupTwigBefore,
   renderTemplateMacro,
 } from '../../fixtures/twig-helpers';
+import Attribute from 'drupal-attribute';
 
 test.before(setupTwigBefore);
 
@@ -39,4 +40,16 @@ test('should handle an undefined input', renderTemplateMacro, {
   template: 'No input: {{ nothing|without("content", "date")|keys }}',
   data,
   expected: 'No input: ',
+});
+
+test('should do a deep clone of the element', renderTemplateMacro, {
+  template:
+    '{%set copy = element|without("remove") %}<div{{ element.attributes.addClass("class2") }}><div{{ copy.attributes }}>',
+  data: {
+    element: {
+      remove: 'value',
+      attributes: new Attribute([['class', ['class1']]]),
+    },
+  },
+  expected: '<div class="class1 class2"><div class="class1">',
 });

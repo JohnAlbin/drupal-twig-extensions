@@ -3,6 +3,7 @@ import {
   setupTwingBefore,
   renderTemplateMacro,
 } from '../../fixtures/twing-helpers';
+import Attribute from 'drupal-attribute';
 
 test.before(setupTwingBefore);
 
@@ -39,4 +40,17 @@ test('should handle an undefined input', renderTemplateMacro, {
   template: 'No input: {{ nothing|without("content", "date")|join }}',
   data,
   expected: 'No input: ',
+});
+
+// @TODO Test is failing because Twing is not handling Attribute properly.
+test.failing('should do a deep clone of the element', renderTemplateMacro, {
+  template:
+    '{%set copy = element|without("remove") %}<div{{ element.attributes.addClass("class2") }}><div{{ copy.attributes }}>',
+  data: {
+    element: {
+      remove: 'value',
+      attributes: new Attribute([['class', ['class1']]]),
+    },
+  },
+  expected: '<div class="class1 class2"><div class="class1">',
 });
