@@ -1,0 +1,19 @@
+# Ignore everything.
+/*
+
+# Don't ignore some Yaml, JavaScript, TypeScript, and Markdown files in the root
+# directory.
+!/*.yml
+!/*.cjs
+!/*.js
+!/*.ts
+!/*.md
+!/babel.config.json
+!/.prettierrc.json
+
+# Ignore generated CHANGELOG.
+/CHANGELOG.md
+
+# Don't ignore source and tests.
+!/lib
+!/tests
