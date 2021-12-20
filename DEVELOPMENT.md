@@ -12,14 +12,16 @@ Don’t worry. You can still submit a Pull Request and if you don’t properly u
 ### Commit message format:
 
 ```
-<type>(<scope>): <subject>
+<type>(<scope>)<!>: <subject>
 
 <body>
 ```
 
-`<body>` is optional.
-
 `(<scope>)` is optional. If it is not included in a commit message, the first line of the message would just be: `type: subject`
+
+`<!>` is optional. It must be used for a BREAKING CHANGE.
+
+`<body>` is optional. If the exclamation mark is added before the `<subject>`, the `<body>` must use the format `BREAKING CHANGE: <body>`.
 
 ### Details
 
@@ -27,17 +29,27 @@ Don’t worry. You can still submit a Pull Request and if you don’t properly u
 +----------→ <type>: Must be one of:
 │                    feat, fix, style, refactor,
 │                    docs, style, test, chore
+│                    Append with ! if its a BREAKING CHANGE.
 │
-│     +-→ <subject>: The commit summary in present tense.
-│     │              Starts with a capital letter.
-│     │              Doesn't end in a period.
-│     │
-⎡‾‾⎤  ⎡‾‾‾‾‾‾‾‾‾‾‾‾⎤
+│   +-----→ <scope>: Optional context for the commit subject.
+│   │                Alternatively, make the subject more
+│   │                specific.
+│   │
+│   │        +--→ <!>: Indicates a BREAKING CHANGE that
+│   │        │         requires a new major semantic version.
+│   │        │         Can be part of commits of any `type`.
+│   │        │
+│   │        │  +--→ <subject>: The commit summary in present
+│   │        │  │               tense. Starts with a capital
+│   │        │  │               letter. Doesn't end in a
+│   │        │  │               period.
+⎡‾‾⎤⎡‾‾‾‾‾‾‾⎤⎡⎤ ⎡‾‾‾‾‾‾‾‾‾‾‾‾⎤
 
-feat: Add hat wobble
+feat(options)!: Add hat wobble
 
-Added the "wobble" option, using the hattip
-module as a dependency. Fixes #3
+BREAKING CHANGE: Added the "wobble" option,
+using the hattip module as a dependency.
+Requires Node.js v12 or later. Fixes #3
 
 ⎣⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎦
 │
@@ -47,7 +59,9 @@ module as a dependency. Fixes #3
                      If the commit relates to a Github issue,
                      the body MUST include a reference to the
                      issue number, e.g. "Issue #2" or
-                     "Fixes #2"
+                     "Fixes #2". If the commit is a breaking
+                     change, the body MUST use the format
+                     "BREAKING CHANGE: <description>".
 ```
 
 ### Examples of `<type>`:
