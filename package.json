@@ -18,8 +18,7 @@
   ],
   "main": "./dist/index.js",
   "scripts": {
-    "build": "npm run clean && babel -d dist lib/",
-    "clean": "rimraf dist/*",
+    "build": "babel --delete-dir-on-start -d dist lib/",
     "prepare": "npm run build",
     "release": "standard-version",
     "release:alpha": "standard-version --prerelease alpha",
@@ -48,7 +47,6 @@
     "coveralls": "^3.1.1",
     "nyc": "^15.1.0",
     "prettier": "^2.5.1",
-    "rimraf": "^3.0.2",
     "standard-version": "^9.3.2",
     "twig": "^1.15.4",
     "twing": "^5.1.0"
