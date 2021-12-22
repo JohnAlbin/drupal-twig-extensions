@@ -1,8 +1,5 @@
 import test from 'ava';
-import {
-  setupTwingBefore,
-  renderTemplateMacro,
-} from '../../fixtures/twing-helpers.js';
+import { setupTwingBefore, renderTemplateMacro } from '#twing-fixture';
 
 test.before(setupTwingBefore);
 

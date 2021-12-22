@@ -27,6 +27,12 @@
     "./helpers/twig": "./lib/helpers/twig.js",
     "./helpers/twing": "./lib/helpers/twing.js"
   },
+  "imports": {
+    "#twig": "./lib/twig.js",
+    "#twing": "./lib/twing.js",
+    "#twig-fixture": "./tests/fixtures/twig-helpers.js",
+    "#twing-fixture": "./tests/fixtures/twing-helpers.js"
+  },
   "type": "module",
   "scripts": {
     "release": "standard-version",

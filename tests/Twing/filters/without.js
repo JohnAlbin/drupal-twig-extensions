@@ -1,9 +1,6 @@
 import test from 'ava';
-import {
-  setupTwingBefore,
-  renderTemplateMacro,
-} from '../../fixtures/twing-helpers.js';
-import Attribute from 'drupal-attribute';
+import { setupTwingBefore, renderTemplateMacro } from '#twing-fixture';
+import { Attribute } from '#twing';
 
 test.before(setupTwingBefore);
 

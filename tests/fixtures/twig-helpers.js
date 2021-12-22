@@ -1,6 +1,6 @@
 import test from 'ava';
 import Twig from 'twig';
-import { addDrupalExtensions } from '../../lib/twig.js';
+import { addDrupalExtensions } from '#twig';
 
 export const setupTwigBefore = (t) => {
   t.context.twig = Twig.twig;

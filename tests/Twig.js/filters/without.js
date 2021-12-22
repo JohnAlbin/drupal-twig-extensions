@@ -1,9 +1,6 @@
 import test from 'ava';
-import {
-  setupTwigBefore,
-  renderTemplateMacro,
-} from '../../fixtures/twig-helpers.js';
-import Attribute from 'drupal-attribute';
+import { setupTwigBefore, renderTemplateMacro } from '#twig-fixture';
+import { Attribute } from '#twig';
 
 test.before(setupTwigBefore);
 

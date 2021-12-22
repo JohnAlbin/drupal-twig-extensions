@@ -1,8 +1,5 @@
 import test from 'ava';
-import {
-  setupTwigBefore,
-  renderTemplateMacro,
-} from '../../fixtures/twig-helpers.js';
+import { setupTwigBefore, renderTemplateMacro } from '#twig-fixture';
 
 test.before(setupTwigBefore);
 
