@@ -1,7 +1,7 @@
 # Drupal’s Twig extensions for JavaScript
 
-[![Build Status](https://travis-ci.com/JohnAlbin/drupal-twig-extensions.svg?branch=main)](https://travis-ci.com/JohnAlbin/drupal-twig-extensions)
-[![Coverage Status](https://coveralls.io/repos/JohnAlbin/drupal-twig-extensions/badge.svg?branch=main)](https://coveralls.io/r/JohnAlbin/drupal-twig-extensions?branch=main)
+[![Node.js CI](https://github.com/JohnAlbin/drupal-twig-extensions/actions/workflows/node.js.yml/badge.svg)](https://github.com/JohnAlbin/drupal-twig-extensions/actions/workflows/node.js.yml)
+[![Coverage Status](https://coveralls.io/repos/github/JohnAlbin/drupal-twig-extensions/badge.svg)](https://coveralls.io/github/JohnAlbin/drupal-twig-extensions)
 
 It’s common for Drupal developers to use a style guide tool to document/display a project’s frontend components. Most of these style guide tools are written in JavaScript and don’t easily integrate with the PHP code in Twig. Fortunately, there are two different ports of Twig into JavaScript, [Twig.js](https://github.com/twigjs/twig.js/) and [Twing](https://github.com/NightlyCommit/twing).
 
