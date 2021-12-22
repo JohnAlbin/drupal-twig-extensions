@@ -1,6 +1,6 @@
 import test from 'ava';
 import { TwingEnvironment, TwingLoaderRelativeFilesystem } from 'twing';
-import { addDrupalExtensions } from '../../twing.js';
+import { addDrupalExtensions } from '../../lib/twing.js';
 
 export const setupTwingBefore = (t) => {
   // Create an instance of the Twing Environment.

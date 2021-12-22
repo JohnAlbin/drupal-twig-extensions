@@ -16,7 +16,17 @@
     "twig.js",
     "twing.js"
   ],
-  "main": "./lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./twig": "./lib/twig.js",
+    "./twing": "./lib/twing.js",
+    "./filters/twig": "./lib/filters/twig.js",
+    "./filters/twing": "./lib/filters/twing.js",
+    "./functions/twig": "./lib/filters/twig.js",
+    "./functions/twing": "./lib/filters/twing.js",
+    "./helpers/twig": "./lib/helpers/twig.js",
+    "./helpers/twing": "./lib/helpers/twing.js"
+  },
   "type": "module",
   "scripts": {
     "release": "standard-version",
@@ -54,7 +64,7 @@
     ],
     "check-coverage": true,
     "statements": 98,
-    "branches": 97,
+    "branches": 96,
     "functions": 94,
     "lines": 98,
     "reporter": [
