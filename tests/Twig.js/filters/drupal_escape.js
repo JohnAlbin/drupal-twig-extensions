@@ -2,7 +2,7 @@ import test from 'ava';
 import {
   setupTwigBefore,
   renderTemplateMacro,
-} from '../../fixtures/twig-helpers';
+} from '../../fixtures/twig-helpers.js';
 
 test.before(setupTwigBefore);
 

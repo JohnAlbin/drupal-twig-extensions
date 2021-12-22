@@ -37,9 +37,5 @@ package-lock.json
 /yarn.lock
 /yarn-debug.log
 
-# Exclude the distrubution files built with Babel.
-/dist/
-
 # Exclude code coverage files.
-/.nyc_output/
 /coverage/

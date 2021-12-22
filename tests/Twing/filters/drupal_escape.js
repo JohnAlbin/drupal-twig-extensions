@@ -2,7 +2,7 @@ import test from 'ava';
 import {
   setupTwingBefore,
   renderTemplateMacro,
-} from '../../fixtures/twing-helpers';
+} from '../../fixtures/twing-helpers.js';
 
 test.before(setupTwingBefore);
 

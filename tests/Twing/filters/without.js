@@ -2,7 +2,7 @@ import test from 'ava';
 import {
   setupTwingBefore,
   renderTemplateMacro,
-} from '../../fixtures/twing-helpers';
+} from '../../fixtures/twing-helpers.js';
 import Attribute from 'drupal-attribute';
 
 test.before(setupTwingBefore);

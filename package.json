@@ -12,14 +12,13 @@
     "Twing"
   ],
   "files": [
-    "dist/",
+    "lib/",
     "twig.js",
     "twing.js"
   ],
-  "main": "./dist/index.js",
+  "main": "./lib/index.js",
+  "type": "module",
   "scripts": {
-    "build": "babel --delete-dir-on-start -d dist lib/",
-    "prepare": "npm run build",
     "release": "standard-version",
     "release:alpha": "standard-version --prerelease alpha",
     "release:beta": "standard-version --prerelease beta",
@@ -27,8 +26,7 @@
     "release:inspect": "npm run prepare && npx npm-packlist",
     "format": "prettier --write \"{.*/**/*,*,**/*}.{js,jsx,ts,tsx,json,md,yml,css,scss}\"",
     "format:check": "prettier --check \"{.*/**/*,*,**/*}.{js,jsx,ts,tsx,json,md,yml,css,scss}\"",
-    "pretest": "npm run prepare",
-    "test": "nyc ava"
+    "test": "c8 ava"
   },
   "dependencies": {
     "drupal-attribute": "^1.0.2",
@@ -39,31 +37,29 @@
     "twing": "^5.0.2"
   },
   "devDependencies": {
-    "@ava/babel": "^2.0.0",
-    "@babel/cli": "^7.16.0",
-    "@babel/core": "^7.16.0",
-    "@babel/preset-env": "^7.16.4",
     "ava": "^3.15.0",
+    "c8": "^7.10.0",
     "coveralls": "^3.1.1",
-    "nyc": "^15.1.0",
     "prettier": "^2.5.1",
     "standard-version": "^9.3.2",
     "twig": "^1.15.4",
     "twing": "^5.1.0"
   },
   "ava": {
-    "babel": true,
     "verbose": true
   },
-  "nyc": {
-    "exclude": [
-      "node_modules",
-      "tests"
+  "c8": {
+    "all": true,
+    "include": [
+      "lib",
+      "twig.js",
+      "twing.js"
     ],
     "check-coverage": true,
-    "functions": 91,
+    "statements": 98,
+    "branches": 97,
+    "functions": 94,
     "lines": 98,
-    "branches": 72,
     "reporter": [
       "text-summary",
       "lcov"
