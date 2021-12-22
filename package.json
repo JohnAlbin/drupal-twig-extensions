@@ -37,16 +37,13 @@
     "twing": "^5.0.2"
   },
   "devDependencies": {
-    "ava": "^3.15.0",
+    "ava": "^4.0.0-rc.1",
     "c8": "^7.10.0",
     "coveralls": "^3.1.1",
     "prettier": "^2.5.1",
     "standard-version": "^9.3.2",
     "twig": "^1.15.4",
     "twing": "^5.1.0"
-  },
-  "ava": {
-    "verbose": true
   },
   "c8": {
     "all": true,

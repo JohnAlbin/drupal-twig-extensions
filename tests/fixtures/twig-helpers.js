@@ -1,3 +1,4 @@
+import test from 'ava';
 import Twig from 'twig';
 import { addDrupalExtensions } from '../../twig.js';
 
@@ -8,7 +9,7 @@ export const setupTwigBefore = (t) => {
   addDrupalExtensions(Twig);
 };
 
-export const renderTemplateMacro = async (t, options) => {
+export const renderTemplateMacro = test.macro(async (t, options) => {
   const compiledTemplate = await t.context.twig({
     data: options.template,
   });
@@ -16,4 +17,4 @@ export const renderTemplateMacro = async (t, options) => {
   let actual = await compiledTemplate.render(options.data || {});
 
   t.is(actual, options.expected);
-};
+});

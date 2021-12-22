@@ -1,3 +1,4 @@
+import test from 'ava';
 import { TwingEnvironment, TwingLoaderRelativeFilesystem } from 'twing';
 import { addDrupalExtensions } from '../../twing.js';
 
@@ -14,7 +15,7 @@ export const setupTwingBefore = (t) => {
   t.context.twingEnvironment = twingEnvironment;
 };
 
-export const renderTemplateMacro = async (t, options) => {
+export const renderTemplateMacro = test.macro(async (t, options) => {
   const compiledTemplate = await t.context.twingEnvironment.createTemplate(
     options.template,
   );
@@ -22,4 +23,4 @@ export const renderTemplateMacro = async (t, options) => {
   let actual = await compiledTemplate.render(options.data || {});
 
   t.is(actual, options.expected);
-};
+});
