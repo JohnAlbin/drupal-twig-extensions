@@ -70,8 +70,8 @@
     ],
     "check-coverage": true,
     "statements": 98,
-    "branches": 96,
-    "functions": 94,
+    "branches": 97,
+    "functions": 100,
     "lines": 98,
     "reporter": [
       "text-summary",
