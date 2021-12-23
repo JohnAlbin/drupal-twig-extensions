@@ -70,7 +70,7 @@
     ],
     "check-coverage": true,
     "statements": 99,
-    "branches": 97,
+    "branches": 99,
     "functions": 100,
     "lines": 99,
     "reporter": [
