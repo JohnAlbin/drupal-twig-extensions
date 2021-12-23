@@ -5,6 +5,12 @@ test.before(setupTwingBefore);
 
 const template = '{{ id|clean_id }}';
 
+test('should return an empty string given invalid input', renderTemplateMacro, {
+  template,
+  data: { id: null },
+  expected: '',
+});
+
 test(
   'should not strip letters, digits, and hyphens from the ID',
   renderTemplateMacro,
