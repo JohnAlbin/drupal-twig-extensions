@@ -69,10 +69,10 @@
       "twing.js"
     ],
     "check-coverage": true,
-    "statements": 98,
+    "statements": 99,
     "branches": 97,
     "functions": 100,
-    "lines": 98,
+    "lines": 99,
     "reporter": [
       "text-summary",
       "lcov"
