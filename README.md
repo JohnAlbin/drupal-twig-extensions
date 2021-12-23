@@ -25,8 +25,8 @@ Then install this project with:<br />
 If you use Twig.js, use the following JavaScript to integrate with Twig:
 
 ```javascript
-var Twig = require('twig');
-var { addDrupalExtensions } = require('drupal-twig-extensions/twig');
+import Twig from 'twig';
+import { addDrupalExtensions } from 'drupal-twig-extensions/twig';
 
 // Add the extensions for Drupal.
 addDrupalExtensions(Twig);
@@ -37,8 +37,8 @@ addDrupalExtensions(Twig);
 If you use Twing, use the following JavaScript to integrate with Twing:
 
 ```javascript
-var { TwingEnvironment, TwingLoaderRelativeFilesystem } = require('twing');
-var { addDrupalExtensions } = require('drupal-twig-extensions/twing');
+import { TwingEnvironment, TwingLoaderRelativeFilesystem } from 'twing';
+import { addDrupalExtensions } from 'drupal-twig-extensions/twing';
 
 // Create an instance of the Twing Environment.
 const twingEnvironment = new TwingEnvironment(
@@ -49,7 +49,7 @@ const twingEnvironment = new TwingEnvironment(
 addDrupalExtensions(twingEnvironment);
 
 // If you use twing-loader, it will need access to the same twing environment.
-module.exports = twingEnvironment;
+export default twingEnvironment;
 ```
 
 In your Twig templates, you can now use the Drupal extensions documented later in this README.
