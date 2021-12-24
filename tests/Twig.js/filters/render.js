@@ -1,6 +1,6 @@
 import test from 'ava';
-import { setupTwigBefore, renderTemplateMacro } from '#twig-fixture';
 import cloneDeep from 'lodash.clonedeep';
+import { setupTwigBefore, renderTemplateMacro } from '#twig-fixture';
 
 test.before(setupTwigBefore);
 
