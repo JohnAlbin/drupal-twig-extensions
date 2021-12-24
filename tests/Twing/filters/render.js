@@ -23,6 +23,13 @@ test(
   },
 );
 
+test('should return a string', renderTemplateMacro, {
+  // The first key of a string is 0.
+  template: '{{ array|render|keys|first }}',
+  data,
+  expected: '0',
+});
+
 test.failing('should convert a render array to a string', renderTemplateMacro, {
   template,
   data,
