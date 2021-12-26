@@ -28,3 +28,9 @@ test('should escape html elements in a string', renderTemplateMacro, {
   data: { string: '<p>Bonnie and Clyde</p>' },
   expected: '&lt;p&gt;Bonnie and Clyde&lt;/p&gt;',
 });
+
+test('should escape an empty string', renderTemplateMacro, {
+  template,
+  data: { string: '' },
+  expected: '',
+});
