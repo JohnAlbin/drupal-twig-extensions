@@ -1,4 +1,5 @@
 import test from 'ava';
+import { cleanClassCache } from '../../../lib/filters/clean_class/definition.js';
 import { setupTwigBefore, renderTemplateMacro } from '#twig-fixture';
 
 test.before(setupTwigBefore);
@@ -86,4 +87,26 @@ test('should enforce Drupal coding standards', renderTemplateMacro, {
   template,
   data: { class: 'CLASS NAME_[Ü]' },
   expected: 'class-name--ü',
+});
+
+test('should cache results', async (t) => {
+  t.plan(3);
+
+  const template = '{{ class|clean_class }}';
+  const data = { class: 'UNCACHED CLASS NAME' };
+  const expected = 'uncached-class-name';
+
+  // No existing cache.
+  t.deepEqual(cleanClassCache[data.class], undefined);
+
+  await renderTemplateMacro.exec(t, {
+    template,
+    data,
+    expected,
+  });
+
+  // Value is cached. Note: the actual "test" to see if caching works is done by
+  // the code coverage report that ensures the code branch that uses the cache
+  // is followed.
+  t.deepEqual(cleanClassCache[data.class], expected);
 });
