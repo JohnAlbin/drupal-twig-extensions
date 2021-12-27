@@ -32,18 +32,3 @@ test('should enforce Drupal coding standards', renderTemplateMacro, {
   data: { id: 'ID NAME_[1]' },
   expected: 'id-name-1',
 });
-
-test.failing('should make a repeated ID unique', async (t) => {
-  const compiledTemplate = await t.context.twingEnvironment.createTemplate(
-    template,
-  );
-  const data = { id: 'test-unique-id' };
-  const expected = 'test-unique-id';
-  let actual;
-
-  actual = await compiledTemplate.render(data);
-  t.is(actual, expected);
-
-  actual = await compiledTemplate.render(data);
-  t.not(actual, expected);
-});
