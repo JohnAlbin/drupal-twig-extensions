@@ -1,6 +1,5 @@
 import test from 'ava';
 import { setupTwigBefore, renderTemplateMacro } from '#twig-fixture';
-import { Attribute } from '#twig';
 
 test.before(setupTwigBefore);
 
@@ -39,14 +38,24 @@ test('should handle an undefined input', renderTemplateMacro, {
   expected: 'No input: ',
 });
 
+const selfModifyingObject = {
+  remove: 'theValueToRemove',
+  add: ['oldValue'],
+  addValue(value) {
+    this.add.push(value);
+    return this;
+  },
+  toString() {
+    return `${this.remove}:${this.add.join(',')}`;
+  },
+};
+
 test('should do a deep clone of the element', renderTemplateMacro, {
   template:
-    '{%set copy = element|without("remove") %}<div{{ element.attributes.addClass("class2") }}><div{{ copy.attributes }}>',
+    '{%set copy = element|without("remove") %}element={{ element.addValue("newValue") }} copy={{ copy }}',
   data: {
-    element: {
-      remove: 'value',
-      attributes: new Attribute([['class', ['class1']]]),
-    },
+    element: selfModifyingObject,
   },
-  expected: '<div class="class1 class2"><div class="class1">',
+  expected:
+    'element=theValueToRemove:oldValue,newValue copy=undefined:oldValue',
 });

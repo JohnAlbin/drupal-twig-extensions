@@ -1,6 +1,5 @@
 import test from 'ava';
 import { setupTwingBefore, renderTemplateMacro } from '#twing-fixture';
-import { Attribute } from '#twing';
 
 test.before(setupTwingBefore);
 
@@ -39,15 +38,24 @@ test('should handle an undefined input', renderTemplateMacro, {
   expected: 'No input: ',
 });
 
-// @TODO Test is failing because Twing is not handling Attribute properly.
-test.failing('should do a deep clone of the element', renderTemplateMacro, {
-  template:
-    '{%set copy = element|without("remove") %}<div{{ element.attributes.addClass("class2") }}><div{{ copy.attributes }}>',
-  data: {
-    element: {
-      remove: 'value',
-      attributes: new Attribute([['class', ['class1']]]),
-    },
+const selfModifyingObject = {
+  remove: 'theValueToRemove',
+  add: ['oldValue'],
+  addValue(value) {
+    this.add.push(value);
+    return this;
   },
-  expected: '<div class="class1 class2"><div class="class1">',
+  toString() {
+    return `${this.remove}:${this.add.join(',')}`;
+  },
+};
+
+test('should do a deep clone of the element', renderTemplateMacro, {
+  template:
+    '{%set copy = element|without("remove") %}element={{ element.addValue("newValue") }} copy={{ copy }}',
+  data: {
+    element: selfModifyingObject,
+  },
+  expected:
+    'element=theValueToRemove:oldValue,newValue copy=undefined:oldValue',
 });
