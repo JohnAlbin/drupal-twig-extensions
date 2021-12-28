@@ -1,5 +1,5 @@
 import test from 'ava';
-import { cleanClassCache } from '../../../lib/filters/clean_class/definition.js';
+import config from '../../../lib/config/twing.js';
 import { setupTwingBefore, renderTemplateMacro } from '#twing-fixture';
 
 test.before(setupTwingBefore);
@@ -90,23 +90,21 @@ test('should enforce Drupal coding standards', renderTemplateMacro, {
 });
 
 test('should cache results', async (t) => {
-  t.plan(3);
+  t.plan(2);
 
   const template = '{{ class|clean_class }}';
   const data = { class: 'UNCACHED CLASS NAME' };
-  const expected = 'uncached-class-name';
+  const expected = 'pre-cached-class-name';
 
   // No existing cache.
-  t.deepEqual(cleanClassCache[data.class], undefined);
+  t.deepEqual(config.cleanClassCache[data.class], undefined);
+
+  // Cache a value that can't be created using clean_class.
+  config.cleanClassCache[data.class] = expected;
 
   await renderTemplateMacro.exec(t, {
     template,
     data,
     expected,
   });
-
-  // Value is cached. Note: the actual "test" to see if caching works is done by
-  // the code coverage report that ensures the code branch that uses the cache
-  // is followed.
-  t.deepEqual(cleanClassCache[data.class], expected);
 });
