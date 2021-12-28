@@ -1,5 +1,8 @@
 import test from 'ava';
 import date from 'locutus/php/datetime/date.js';
+import { TwingEnvironment, TwingLoaderRelativeFilesystem } from 'twing';
+import state from '../../../lib/config/twing.js';
+import { addDrupalExtensions } from '#twing';
 import { setupTwingBefore, renderTemplateMacro } from '#twing-fixture';
 
 test.before(setupTwingBefore);
@@ -38,4 +41,40 @@ test('should use the given custom format', renderTemplateMacro, {
     format,
   },
   expected: date(format, data.date),
+});
+
+test('should use a format added from config', async (t) => {
+  t.plan(4);
+
+  const specialFormat = '\\F\\r\\o\\m \\c\\o\\n\\f\\i\\g: Y-m-d';
+  const originalFormats = state.dateFormats;
+
+  // Create an instance of the Twing Environment.
+  const twingEnvironment = new TwingEnvironment(
+    new TwingLoaderRelativeFilesystem(),
+    { autoescape: false },
+  );
+
+  // Ensure the config doesn't originally exist.
+  t.deepEqual(state.dateFormats.special, undefined);
+
+  addDrupalExtensions(twingEnvironment, {
+    date_format: {
+      special: specialFormat,
+    },
+  });
+
+  // Confirm that the config was added to the state.
+  t.deepEqual(state.dateFormats.special, specialFormat);
+
+  // Confirm the config affects rendering.
+  const compiledTemplate = await twingEnvironment.createTemplate(
+    '{{ date|format_date("special") }}',
+  );
+  let actual = await compiledTemplate.render(data);
+  t.is(actual, 'From config: 2002-06-29');
+
+  // Ensure the config was removed for other tests.
+  state.dateFormats = originalFormats;
+  t.deepEqual(state.dateFormats.special, undefined);
 });

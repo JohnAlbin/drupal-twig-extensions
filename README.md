@@ -29,7 +29,12 @@ import Twig from 'twig';
 import { addDrupalExtensions } from 'drupal-twig-extensions/twig';
 
 // Add the extensions for Drupal.
-addDrupalExtensions(Twig);
+addDrupalExtensions(Twig, {
+  // Optionally override any of Drupal's default date_format patterns.
+  date_format: {
+    long: 'Y-m-d H:i:s',
+  },
+});
 ```
 
 ### Twing 5.0.2 or later
@@ -46,7 +51,12 @@ const twingEnvironment = new TwingEnvironment(
 );
 
 // Add the extensions for Drupal.
-addDrupalExtensions(twingEnvironment);
+addDrupalExtensions(twingEnvironment, {
+  // Optionally override any of Drupal's default date_format patterns.
+  date_format: {
+    long: 'Y-m-d H:i:s',
+  },
+});
 
 // If you use twing-loader, it will need access to the same twing environment.
 export default twingEnvironment;
