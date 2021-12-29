@@ -70,6 +70,9 @@ Normally, these extensions would get their configuration from Drupal itself. Sin
 
 ```javascript
 addDrupalExtensions(twigOrTwing, {
+  // Set the active theme's machine name.
+  active_theme: 'mytheme',
+
   // Override any of Drupal's default date_format patterns.
   // Or add your own custom formats.
   date_format: {
