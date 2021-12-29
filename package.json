@@ -37,7 +37,7 @@
     "release:alpha": "standard-version --prerelease alpha",
     "release:beta": "standard-version --prerelease beta",
     "release:rc": "standard-version --prerelease rc",
-    "release:inspect": "npm run prepare && npx npm-packlist",
+    "release:inspect": "npx npm-packlist",
     "lint": "eslint lib/ tests/",
     "lint:fix": "eslint --fix lib/ tests/",
     "format": "npm run lint:fix && npm run prettier",
