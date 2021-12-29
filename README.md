@@ -20,6 +20,12 @@ Then install this project with:<br />
 
 ## Usage
 
+In your Twig templates, just follow the integration code below and you'll be able to use Drupal extensions like this:
+
+```twig
+{{ 'Hello World!'|drupal_escape }}
+```
+
 ### Twig.js 1.15.0 or later
 
 If you use Twig.js, use the following JavaScript to integrate with Twig:
@@ -30,10 +36,8 @@ import { addDrupalExtensions } from 'drupal-twig-extensions/twig';
 
 // Add the extensions for Drupal.
 addDrupalExtensions(Twig, {
-  // Optionally override any of Drupal's default date_format patterns.
-  date_format: {
-    long: 'Y-m-d H:i:s',
-  },
+  // Optionally, set options to configure how the Drupal
+  // extensions should behave. See below for details.
 });
 ```
 
@@ -52,20 +56,32 @@ const twingEnvironment = new TwingEnvironment(
 
 // Add the extensions for Drupal.
 addDrupalExtensions(twingEnvironment, {
-  // Optionally override any of Drupal's default date_format patterns.
-  date_format: {
-    long: 'Y-m-d H:i:s',
-  },
+  // Optionally, set options to configure how the Drupal
+  // extensions should behave. See below for details.
 });
 
 // If you use twing-loader, it will need access to the same twing environment.
 export default twingEnvironment;
 ```
 
-In your Twig templates, you can now use the Drupal extensions documented later in this README.
+### Options for addDrupalExtensions()
 
-```twig
-{{ 'Hello World!'|clean_id }}
+Normally, these extensions would get their configuration from Drupal itself. Since this is a JavaScript environment, you'll need to provide some of that configuration yourself; just add the specified properties to the second argument of `addDrupalExtensions`.
+
+```javascript
+addDrupalExtensions(twigOrTwing, {
+  // Override any of Drupal's default date_format patterns.
+  // Or add your own custom formats.
+  date_format: {
+    long: 'Y-m-d H:i:s',
+  },
+});
+```
+
+If you don't want to specify any configuration options, you can skip the second argument. Like so:
+
+```
+addDrupalExtensions(twigOrTwing);
 ```
 
 ## Implementation details
