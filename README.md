@@ -116,8 +116,8 @@ The [official list of filters is in Drupal 9’s code](https://api.drupal.org/ap
 
 The [official list of functions is in Drupal 9’s code](https://api.drupal.org/api/drupal/core%21lib%21Drupal%21Core%21Template%21TwigExtension.php/function/TwigExtension%3A%3AgetFunctions/9) and are described in [Drupal’s Twig functions documentation](https://www.drupal.org/docs/theming-drupal/twig-in-drupal/functions-in-twig-templates).
 
-- `active_theme`<sup>3</sup>
-- `active_theme_path`<sup>3</sup>
+- `active_theme`
+- `active_theme_path`
 - `attach_library`<sup>3</sup>
 - `create_attribute`
 - `file_url`<sup>2</sup>
