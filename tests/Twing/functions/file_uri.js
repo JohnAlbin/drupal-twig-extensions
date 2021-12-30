@@ -20,11 +20,36 @@ test(
 );
 
 test.failing(
-  'should convert the public uri to a relative path',
+  'should convert the public stream wrapper to a path',
   renderTemplateMacro,
   {
     template,
     data,
     expected: '<a href="/sites/default/files/file-path.txt">download file</a>',
+  },
+);
+
+test.failing(
+  'should convert the private stream wrapper to a path',
+  renderTemplateMacro,
+  {
+    template,
+    data: {
+      uri: { value: 'private://file-path.txt' },
+    },
+    expected:
+      '<a href="/sites/default/private/file-path.txt">download file</a>',
+  },
+);
+
+test.failing(
+  'should convert the temporary stream wrapper to a path',
+  renderTemplateMacro,
+  {
+    template,
+    data: {
+      uri: { value: 'temporary://file-path.txt' },
+    },
+    expected: '<a href="/sites/default/tmp/file-path.txt">download file</a>',
   },
 );
