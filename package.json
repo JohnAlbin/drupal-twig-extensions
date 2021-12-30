@@ -73,9 +73,7 @@
   "c8": {
     "all": true,
     "include": [
-      "lib",
-      "twig.js",
-      "twing.js"
+      "lib"
     ],
     "check-coverage": true,
     "statements": 100,
