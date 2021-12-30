@@ -72,10 +72,13 @@ Normally, these extensions would get their configuration from Drupal itself. Sin
 
 ```javascript
 addDrupalExtensions(twigOrTwing, {
-  // Set the active theme's machine name.
+  // Set the active theme's machine name; defaults to 'stark'.
   active_theme: 'zen',
-  // Set the active theme's path.
-  active_theme: 'themes/contrib/zen',
+  // Set the active theme's path. Uses the active_theme name to
+  // determine the default value. Core themes default to
+  // 'core/themes/[active_theme]'. Other themes default to
+  // 'themes/custom/[active_theme]'.
+  active_theme_path: 'themes/contrib/zen',
 
   // Override any of Drupal's default date_format patterns.
   // Or add your own custom formats.
