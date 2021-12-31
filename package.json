@@ -12,7 +12,10 @@
     "Twing"
   ],
   "files": [
-    "lib/"
+    "lib/",
+    "index.js",
+    "twig.js",
+    "twing.js"
   ],
   "exports": {
     ".": "./lib/index.js",
