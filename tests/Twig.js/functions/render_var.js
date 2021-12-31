@@ -46,10 +46,78 @@ test('should return an empty string given undefined', renderTemplateMacro, {
   expected: '',
 });
 
-test.failing('should convert a render array to a string', renderTemplateMacro, {
+test('should return an empty string given boolean false', renderTemplateMacro, {
   template,
-  data,
-  expected: '<p>value1</p><p>value2</p>',
+  data: {
+    array: false,
+  },
+  expected: '',
+});
+
+test('should return a "1" given boolean true', renderTemplateMacro, {
+  template,
+  data: {
+    array: true,
+  },
+  expected: '1',
+});
+
+test('should return a string given a number', renderTemplateMacro, {
+  template,
+  data: {
+    array: 0.25,
+  },
+  expected: '0.25',
+});
+
+test('should return a string given a BigInt', renderTemplateMacro, {
+  template,
+  data: {
+    array: BigInt(1000000000),
+  },
+  expected: '1000000000',
+});
+
+test('should return the description given a Symbol', renderTemplateMacro, {
+  template,
+  data: {
+    array: Symbol('the Symbol description'),
+  },
+  expected: 'the Symbol description',
+});
+
+test(
+  'should return an empty string given an empty array',
+  renderTemplateMacro,
+  {
+    template,
+    data: {
+      array: [],
+    },
+    expected: '',
+  },
+);
+
+test('should return an empty string given an array', renderTemplateMacro, {
+  template,
+  data: {
+    array: ['string1', 'string2'],
+  },
+  expected: '',
+});
+
+test.skip('should throw an error given a Function', async (t) => {
+  const compiledTemplate = await t.context.twig({
+    data: template,
+  });
+
+  const data = {
+    array: () => 'function return value',
+  };
+
+  t.throws(() => compiledTemplate.render(data), {
+    message: 'A function cannot be printed.',
+  });
 });
 
 // Create an object with a custom toString method.
@@ -69,3 +137,57 @@ test(
     expected: custom.toString(),
   },
 );
+
+test(
+  "should use the object's custom toRenderable method if provided",
+  renderTemplateMacro,
+  {
+    template,
+    data: {
+      array: {
+        ...custom,
+        toRenderable: function () {
+          return 'to Renderable';
+        },
+        __toString: function () {
+          return '__to String';
+        },
+      },
+    },
+    expected: 'to Renderable',
+  },
+);
+
+test(
+  "should use the object's custom __toString method if provided",
+  renderTemplateMacro,
+  {
+    template,
+    data: {
+      array: {
+        ...custom,
+        __toString: function () {
+          return '__to String';
+        },
+      },
+    },
+    expected: '__to String',
+  },
+);
+
+test('should print the #markup of a pre-rendered array', renderTemplateMacro, {
+  template,
+  data: {
+    array: {
+      '#printed': true,
+      '#markup': 'The #markup string',
+    },
+  },
+  expected: 'The #markup string',
+});
+
+test.failing('should convert a render array to a string', renderTemplateMacro, {
+  template,
+  data,
+  expected: '<p>value1</p><p>value2</p>',
+});
