@@ -4,7 +4,7 @@ import { setupTwigBefore, renderTemplateMacro } from '#twig-fixture';
 
 test.before(setupTwigBefore);
 
-const template = '{{ array|render }}';
+const template = '{{ render_var(array) }}';
 
 const data = {
   array: {
@@ -13,77 +13,11 @@ const data = {
   },
 };
 
-test(
-  'should return the default Object.toString until render() is implemented',
-  renderTemplateMacro,
-  {
-    template,
-    data,
-    expected: '[object Object]',
-  },
-);
-
 test('should return a string', renderTemplateMacro, {
   // The first key of a string is 0.
-  template: '{{ array|render|keys|first }}',
+  template: '{{ render_var(array)|keys|first }}',
   data,
   expected: '0',
-});
-
-test('should return an empty string given null', renderTemplateMacro, {
-  template,
-  data: {
-    array: null,
-  },
-  expected: '',
-});
-
-test('should return an empty string given undefined', renderTemplateMacro, {
-  template,
-  data: {
-    array: undefined,
-  },
-  expected: '',
-});
-
-test('should return an empty string given boolean false', renderTemplateMacro, {
-  template,
-  data: {
-    array: false,
-  },
-  expected: '',
-});
-
-test('should return a "1" given boolean true', renderTemplateMacro, {
-  template,
-  data: {
-    array: true,
-  },
-  expected: '1',
-});
-
-test('should return a string given a number', renderTemplateMacro, {
-  template,
-  data: {
-    array: 0.25,
-  },
-  expected: '0.25',
-});
-
-test('should return a string given a BigInt', renderTemplateMacro, {
-  template,
-  data: {
-    array: BigInt(1000000000),
-  },
-  expected: '1000000000',
-});
-
-test('should return the description given a Symbol', renderTemplateMacro, {
-  template,
-  data: {
-    array: Symbol('the Symbol description'),
-  },
-  expected: 'the Symbol description',
 });
 
 test(
@@ -185,6 +119,16 @@ test('should print the #markup of a pre-rendered array', renderTemplateMacro, {
   },
   expected: 'The #markup string',
 });
+
+test(
+  'should return the default Object.toString until render() is implemented',
+  renderTemplateMacro,
+  {
+    template,
+    data,
+    expected: '[object Object]',
+  },
+);
 
 test.failing('should convert a render array to a string', renderTemplateMacro, {
   template,
