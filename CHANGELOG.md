@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0-beta.3](https://github.com/JohnAlbin/drupal-twig-extensions/compare/v1.0.0-beta.2...v1.0.0-beta.3) (2021-12-31)
+
+
+### Bug Fixes
+
+* Enable Webpack 4 compatibility ([c9e0654](https://github.com/JohnAlbin/drupal-twig-extensions/commit/c9e065481a6decee7e232064f8eb1efead9d81cf), [a55bf0f](https://github.com/JohnAlbin/drupal-twig-extensions/commit/a55bf0f13858e102e7cc9fb9bcee006807bcbf34)), closes [#37](https://github.com/JohnAlbin/drupal-twig-extensions/issues/37)
+
 ## [1.0.0-beta.2](https://github.com/JohnAlbin/drupal-twig-extensions/compare/v1.0.0-beta.1...v1.0.0-beta.2) (2021-12-31)
 
 
@@ -12,7 +19,6 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Bug Fixes
 
-* Enable Webpack 4 compatibility ([a55bf0f](https://github.com/JohnAlbin/drupal-twig-extensions/commit/a55bf0f13858e102e7cc9fb9bcee006807bcbf34)), closes [#37](https://github.com/JohnAlbin/drupal-twig-extensions/issues/37)
 * Render filter should convert null/undefined to empty string ([b2cf5d4](https://github.com/JohnAlbin/drupal-twig-extensions/commit/b2cf5d49dcac6d89c647bbf5a5d33dacc1686870)), closes [#40](https://github.com/JohnAlbin/drupal-twig-extensions/issues/40)
 
 ## [1.0.0-beta.1](https://github.com/JohnAlbin/drupal-twig-extensions/compare/v1.0.0-alpha.6...v1.0.0-beta.1) (2021-12-29)
