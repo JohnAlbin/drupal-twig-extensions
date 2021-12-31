@@ -37,17 +37,19 @@ test.failing('should convert a render array to a string', renderTemplateMacro, {
 });
 
 // Create an object with a custom toString method.
-const custom = cloneDeep(data);
+const custom = cloneDeep(data.array);
 custom.toString = function () {
-  return '<h2>Custom rendering:</h2>' + this.array.key1['#markup'];
+  return '<h2>Custom rendering:</h2>' + this.key1['#markup'];
 };
 
-test.failing(
+test(
   "should use the object's custom toString method if provided",
   renderTemplateMacro,
   {
     template,
-    data: custom,
-    expected: `${custom}`,
+    data: {
+      array: custom,
+    },
+    expected: custom.toString(),
   },
 );
