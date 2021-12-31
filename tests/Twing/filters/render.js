@@ -30,6 +30,22 @@ test('should return a string', renderTemplateMacro, {
   expected: '0',
 });
 
+test('should return an empty string given null', renderTemplateMacro, {
+  template,
+  data: {
+    array: null,
+  },
+  expected: '',
+});
+
+test('should return an empty string given undefined', renderTemplateMacro, {
+  template,
+  data: {
+    array: undefined,
+  },
+  expected: '',
+});
+
 test.failing('should convert a render array to a string', renderTemplateMacro, {
   template,
   data,
