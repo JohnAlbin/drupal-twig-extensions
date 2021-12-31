@@ -1,6 +1,6 @@
 {
   "name": "drupal-twig-extensions",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0-beta.2",
   "description": "JavaScript implementation of Drupal’s Twig extensions",
   "author": "John Albin Wilkins <virtually.johnalbin@gmail.com> (https://john.albin.net/)",
   "homepage": "https://github.com/JohnAlbin/drupal-twig-extensions",
