@@ -20,40 +20,6 @@ test('should return a string', renderTemplateMacro, {
   expected: '0',
 });
 
-test(
-  'should return an empty string given an empty array',
-  renderTemplateMacro,
-  {
-    template,
-    data: {
-      array: [],
-    },
-    expected: '',
-  },
-);
-
-test('should return an empty string given an array', renderTemplateMacro, {
-  template,
-  data: {
-    array: ['string1', 'string2'],
-  },
-  expected: '',
-});
-
-test.skip('should throw an error given a Function', async (t) => {
-  const compiledTemplate = await t.context.twig({
-    data: template,
-  });
-
-  const data = {
-    array: () => 'function return value',
-  };
-
-  t.throws(() => compiledTemplate.render(data), {
-    message: 'A function cannot be printed.',
-  });
-});
-
 // Create an object with a custom toString method.
 const custom = cloneDeep(data.array);
 custom.toString = function () {
@@ -130,8 +96,8 @@ test(
   },
 );
 
-test.failing('should convert a render array to a string', renderTemplateMacro, {
-  template,
-  data,
-  expected: '<p>value1</p><p>value2</p>',
-});
+// test('should convert a render array to a string', renderTemplateMacro, {
+//   template,
+//   data,
+//   expected: '<p>value1</p><p>value2</p>',
+// });

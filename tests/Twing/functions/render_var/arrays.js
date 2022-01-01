@@ -24,19 +24,3 @@ test('should return an empty string given an array', renderTemplateMacro, {
   },
   expected: '',
 });
-
-// Twing throws a TwingErrorRuntime when trying to set the "array" variable to a
-// function.
-test.skip('should throw an error given a Function', async (t) => {
-  const compiledTemplate = await t.context.twingEnvironment.createTemplate(
-    template,
-  );
-
-  const data = {
-    array: async () => 'function return value',
-  };
-
-  await t.throwsAsync(compiledTemplate.render(data), {
-    message: 'A function cannot be printed.',
-  });
-});
