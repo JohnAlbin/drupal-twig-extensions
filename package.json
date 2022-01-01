@@ -76,7 +76,10 @@
   "c8": {
     "all": true,
     "include": [
-      "lib"
+      "lib",
+      "index.js",
+      "twig.js",
+      "twing.js"
     ],
     "check-coverage": true,
     "statements": 100,
