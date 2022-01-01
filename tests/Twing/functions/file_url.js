@@ -1,11 +1,11 @@
 import test from 'ava';
 import {
-  setupTwigBefore,
+  setupTwingBefore,
   renderTemplateMacro,
   renderWithConfigMacro,
-} from '#twig-fixture';
+} from '#twing-fixture';
 
-test.before(setupTwigBefore);
+test.before(setupTwingBefore);
 
 const template = '<a href="{{ file_url(uri.value) }}">download file</a>';
 
@@ -68,17 +68,13 @@ test.serial('should pass through absolute paths', renderTemplateMacro, {
   expected: '<a href="https://example.com/file-path.txt">download file</a>',
 });
 
-test.serial(
-  'should use the base_url added from config',
-  renderWithConfigMacro,
-  {
-    baseUrl: '/myBaseUrl/',
-    template,
-    data,
-    expected:
-      '<a href="/myBaseUrl/sites/default/files/file-path.txt">download file</a>',
-  },
-);
+test.serial('should the base_url added from config', renderWithConfigMacro, {
+  baseUrl: '/myBaseUrl/',
+  template,
+  data,
+  expected:
+    '<a href="/myBaseUrl/sites/default/files/file-path.txt">download file</a>',
+});
 
 test.serial(
   'should append a slash to the base_url added from config',

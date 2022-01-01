@@ -74,14 +74,28 @@ Normally, these extensions would get their configuration from Drupal itself. Sin
 addDrupalExtensions(twigOrTwing, {
   // Set the active theme's machine name; defaults to 'stark'.
   active_theme: 'zen',
+
   // Set the active theme's path. Uses the active_theme name to
   // determine the default value. Core themes default to
   // 'core/themes/[active_theme]'. Other themes default to
   // 'themes/custom/[active_theme]'.
   active_theme_path: 'themes/contrib/zen',
 
+  // Set the base_url of the Drupal install; defaults to '/'.
+  base_url: '/',
+
+  // Override any of Drupal's default stream wrappers.
+  // Or add your own stream wrappers; new stream wrappers will be
+  // merged with the default ones.
+  streamWrapper: {
+    'public://': 'sites/default/files',
+    'private://': 'sites/default/private',
+    'temporary://': 'sites/default/tmp',
+  },
+
   // Override any of Drupal's default date_format patterns.
-  // Or add your own custom formats.
+  // Or add your own custom formats; new formats will be merged
+  // with the default ones.
   date_format: {
     long: 'Y-m-d H:i:s',
   },
