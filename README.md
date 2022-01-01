@@ -137,7 +137,7 @@ The [official list of functions is in Drupal 9’s code](https://api.drupal.org/
 - `active_theme_path`
 - `attach_library`<sup>3</sup>
 - `create_attribute`
-- `file_url`<sup>2</sup>
+- `file_url`
 - `link`
 - `path`<sup>2</sup>
 - `render_var`<sup>1</sup>
@@ -147,7 +147,7 @@ The [official list of functions is in Drupal 9’s code](https://api.drupal.org/
 
 <sup>2</sup> These functions do not work the same as they do in Drupal; they just return their input without modification. They are implemented to keep Twig compilation from breaking when these Drupal-specific functions are used in Twig templates.
 
-<sup>3</sup> These functions do not work the same as they do in Drupal; they just return an empty string. They are implemented to keep Twig compilation from breaking when these Drupal-specific functions are used in Twig templates.
+<sup>3</sup> This function does not work the same as it does in Drupal; it just returns an empty string. It is implemented to keep Twig compilation from breaking when this Drupal-specific function is used in Twig templates.
 
 ### Tags
 
