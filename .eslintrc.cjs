@@ -32,7 +32,8 @@ module.exports = {
     'import/no-unresolved': [
       'error',
       {
-        ignore: ['#twig', '#twing', '^#twig-fixture$', '^#twing-fixture$'],
+        // Ignore internal import paths that start with #.
+        ignore: ['^#'],
       },
     ],
     'import/no-unused-modules': 'error',

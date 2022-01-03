@@ -1,6 +1,6 @@
 import test from 'ava';
 import Twig from 'twig';
-import state from '../../../lib/config/twig.js';
+import state from '#config';
 import { addDrupalExtensions } from '#twig';
 import { setupTwigBefore, renderTemplateMacro } from '#twig-fixture';
 

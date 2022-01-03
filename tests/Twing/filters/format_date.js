@@ -1,7 +1,7 @@
 import test from 'ava';
 import date from 'locutus/php/datetime/date.js';
 import { TwingEnvironment, TwingLoaderRelativeFilesystem } from 'twing';
-import state from '../../../lib/config/twing.js';
+import state from '#config';
 import { addDrupalExtensions } from '#twing';
 import { setupTwingBefore, renderTemplateMacro } from '#twing-fixture';
 

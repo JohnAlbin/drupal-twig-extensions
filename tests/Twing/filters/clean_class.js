@@ -1,5 +1,5 @@
 import test from 'ava';
-import config from '../../../lib/config/twing.js';
+import config from '#config';
 import { setupTwingBefore, renderTemplateMacro } from '#twing-fixture';
 
 test.before(setupTwingBefore);

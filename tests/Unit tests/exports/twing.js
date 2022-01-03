@@ -1,15 +1,15 @@
 import test from 'ava';
-import * as exports from '../../../twing.js';
-import { addDrupalExtensions, Attribute } from '../../../lib/twing.js';
+import * as exports from '../../../twing.cjs';
 
 test('should have 2 named exports', (t) => {
-  t.is(Object.keys(exports).length, 2);
+  // CJS files also include "default" and "__esModule" exports.
+  t.is(Object.keys(exports).length - 2, 2);
 });
 
 test('should export addDrupalExtensions', (t) => {
-  t.deepEqual(exports.addDrupalExtensions, addDrupalExtensions);
+  t.truthy(typeof exports.addDrupalExtensions === 'function');
 });
 
 test('should export Attribute', (t) => {
-  t.deepEqual(exports.Attribute, Attribute);
+  t.truthy(typeof exports.Attribute === 'function');
 });

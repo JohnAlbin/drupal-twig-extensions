@@ -1,10 +1,9 @@
 import test from 'ava';
 import DrupalAttribute from 'drupal-attribute';
-import * as exports from '../../../index.cjs';
+import * as exports from '#module';
 
 test('should have 1 named export', (t) => {
-  // CJS files also include "default" and "__esModule" exports.
-  t.is(Object.keys(exports).length - 2, 1);
+  t.is(Object.keys(exports).length, 1);
 });
 
 test('should export drupal-attribute as Attribute', (t) => {
