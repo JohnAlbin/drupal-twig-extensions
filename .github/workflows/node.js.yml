@@ -11,6 +11,23 @@ on:
     branches: [ main ]
 
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [17.x]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      - name: install
+        run: npm ci
+      - name: lint
+        run: npm run ci:lint
+
   test:
     runs-on: ubuntu-latest
     strategy:
@@ -25,10 +42,10 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - name: npm install
+    - name: install
       run: npm ci
-    - name: npm test
-      run: npm test
+    - name: test
+      run: npm run ci:test
     - name: Report Node.js ${{ matrix.node-version }} coverage info to Coveralls
       uses: coverallsapp/github-action@master
       with:

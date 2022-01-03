@@ -43,12 +43,13 @@
     "release:inspect": "npx npm-packlist",
     "lint": "eslint lib/ tests/",
     "lint:fix": "eslint --fix lib/ tests/",
-    "format": "npm run lint:fix && npm run prettier",
-    "format:check": "npm run lint && npm run prettier:check",
     "prettier": "prettier --write \"{.*/**/*,*,**/*}.{js,jsx,ts,tsx,json,md,yml,css,scss}\"",
     "prettier:check": "prettier --check \"{.*/**/*,*,**/*}.{js,jsx,ts,tsx,json,md,yml,css,scss}\"",
-    "pretest": "npm run format:check",
-    "test": "c8 ava"
+    "format": "npm run lint:fix && npm run prettier",
+    "ci:lint": "npm run lint && npm run prettier:check",
+    "ci:test": "c8 ava",
+    "pretest": "npm run ci:lint",
+    "test": "npm run ci:test"
   },
   "dependencies": {
     "drupal-attribute": "^1.0.2",
