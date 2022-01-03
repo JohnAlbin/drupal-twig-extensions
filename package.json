@@ -13,22 +13,55 @@
   ],
   "files": [
     "lib/",
-    "index.js",
-    "twig.js",
-    "twing.js"
+    "dist/",
+    "index.cjs",
+    "state.cjs",
+    "twig.cjs",
+    "twing.cjs"
   ],
+  "module": "./lib/index.js",
+  "main": "./dist/index.cjs",
   "exports": {
-    ".": "./lib/index.js",
-    "./twig": "./lib/twig.js",
-    "./twing": "./lib/twing.js",
-    "./filters/twig": "./lib/filters/twig.js",
-    "./filters/twing": "./lib/filters/twing.js",
-    "./functions/twig": "./lib/filters/twig.js",
-    "./functions/twing": "./lib/filters/twing.js",
-    "./helpers/twig": "./lib/helpers/twig.js",
-    "./helpers/twing": "./lib/helpers/twing.js"
+    ".": {
+      "import": "./lib/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./twig": {
+      "import": "./lib/twig.js",
+      "require": "./dist/twig.cjs"
+    },
+    "./twing": {
+      "import": "./lib/twing.js",
+      "require": "./dist/twing.cjs"
+    },
+    "./filters/twig": {
+      "import": "./lib/filters/twig.js",
+      "require": "./dist/filters/twig.cjs"
+    },
+    "./filters/twing": {
+      "import": "./lib/filters/twing.js",
+      "require": "./dist/filters/twing.cjs"
+    },
+    "./functions/twig": {
+      "import": "./lib/filters/twig.js",
+      "require": "./dist/filters/twig.cjs"
+    },
+    "./functions/twing": {
+      "import": "./lib/filters/twing.js",
+      "require": "./dist/filters/twing.cjs"
+    },
+    "./helpers/twig": {
+      "import": "./lib/helpers/twig.js",
+      "require": "./dist/helpers/twig.cjs"
+    },
+    "./helpers/twing": {
+      "import": "./lib/helpers/twing.js",
+      "require": "./dist/helpers/twing.cjs"
+    }
   },
   "imports": {
+    "#module": "./lib/index.js",
+    "#config": "./lib/config.js",
     "#twig": "./lib/twig.js",
     "#twing": "./lib/twing.js",
     "#twig-fixture": "./tests/fixtures/twig-helpers.js",
@@ -36,11 +69,14 @@
   },
   "type": "module",
   "scripts": {
+    "build": "babel --delete-dir-on-start --out-file-extension '.cjs' -d dist lib/",
+    "postbuild": "replace-in-file '/(require\\(\"\\.[^\"]+)\\.js\"/g' '$1.cjs\"' 'dist/**/*.cjs' --isRegex",
+    "prepare": "npm run build",
     "release": "standard-version",
     "release:alpha": "standard-version --prerelease alpha",
     "release:beta": "standard-version --prerelease beta",
     "release:rc": "standard-version --prerelease rc",
-    "release:inspect": "npx npm-packlist",
+    "release:inspect": "npm run prepare && npx npm-packlist",
     "lint": "eslint lib/ tests/",
     "lint:fix": "eslint --fix lib/ tests/",
     "prettier": "prettier --write \"{.*/**/*,*,**/*}.{js,jsx,ts,tsx,json,md,yml,css,scss}\"",
@@ -61,6 +97,9 @@
     "twing": "^5.0.2"
   },
   "devDependencies": {
+    "@babel/cli": "^7.16.0",
+    "@babel/core": "^7.16.0",
+    "@babel/preset-env": "^7.16.4",
     "ava": "^4.0.0-rc.1",
     "c8": "^7.11.0",
     "coveralls": "^3.1.1",
@@ -70,6 +109,7 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-unused-imports": "^2.0.0",
     "prettier": "^2.5.1",
+    "replace-in-file": "^6.3.2",
     "standard-version": "^9.3.2",
     "twig": "^1.15.4",
     "twing": "^5.1.0"
