@@ -30,7 +30,7 @@ In your Twig templates, just follow the integration code below and you'll be abl
 
 ### Twig.js 1.15.0 or later
 
-If you use Twig.js, use the following JavaScript to integrate with Twig:
+If you use Twig.js and `import` statements (i.e. ES Module syntax) in your JavaScript, use the following JavaScript to integrate with Twig:
 
 ```javascript
 import Twig from 'twig';
@@ -39,13 +39,28 @@ import { addDrupalExtensions } from 'drupal-twig-extensions/twig';
 // Add the extensions for Drupal.
 addDrupalExtensions(Twig, {
   // Optionally, set options to configure how the Drupal
-  // extensions should behave. See below for details.
+  // extensions should behave. See "Options" below for
+  // details.
 });
 ```
 
-### Twing 5.0.2 or later
+If you use Twig.js and `require` statements (i.e. CommonJS syntax) in your JavaScript, use the following JavaScript to integrate with Twig:
 
-If you use Twing, use the following JavaScript to integrate with Twing:
+```javascript
+const Twig = require('twig');
+const { addDrupalExtensions } = require('drupal-twig-extensions/twig');
+
+// Add the extensions for Drupal.
+addDrupalExtensions(Twig, {
+  // Optionally, set options to configure how the Drupal
+  // extensions should behave. See "Options" below for
+  // details.
+});
+```
+
+### Twing 5.1.0 or later
+
+If you use Twing and `import` statements (i.e. ES Module syntax) in your JavaScript, use the following JavaScript to integrate with Twing:
 
 ```javascript
 import { TwingEnvironment, TwingLoaderRelativeFilesystem } from 'twing';
@@ -59,11 +74,36 @@ const twingEnvironment = new TwingEnvironment(
 // Add the extensions for Drupal.
 addDrupalExtensions(twingEnvironment, {
   // Optionally, set options to configure how the Drupal
-  // extensions should behave. See below for details.
+  // extensions should behave. See "Options" below for
+  // details.
 });
 
-// If you use twing-loader, it will need access to the same twing environment.
+// If you use twing-loader, it will need access to the same
+// twing environment.
 export default twingEnvironment;
+```
+
+If you use Twing and `require` statements (i.e. CommonJS syntax) in your JavaScript, use the following JavaScript to integrate with Twing:
+
+```javascript
+const { TwingEnvironment, TwingLoaderRelativeFilesystem } = require('twing');
+const { addDrupalExtensions } = require('drupal-twig-extensions/twing');
+
+// Create an instance of the Twing Environment.
+const twingEnvironment = new TwingEnvironment(
+  new TwingLoaderRelativeFilesystem(),
+);
+
+// Add the extensions for Drupal.
+addDrupalExtensions(twingEnvironment, {
+  // Optionally, set options to configure how the Drupal
+  // extensions should behave. See "Options" below for
+  // details.
+});
+
+// If you use twing-loader, it will need access to the same
+// twing environment.
+module.exports = twingEnvironment;
 ```
 
 ### Options for addDrupalExtensions()
@@ -75,8 +115,8 @@ addDrupalExtensions(twigOrTwing, {
   // Set the active theme's machine name; defaults to 'stark'.
   active_theme: 'zen',
 
-  // Set the active theme's path. Uses the active_theme name to
-  // determine the default value. Core themes default to
+  // Set the active theme's path. Uses the active_theme name
+  // to determine the default value. Core themes default to
   // 'core/themes/[active_theme]'. Other themes default to
   // 'themes/custom/[active_theme]'.
   active_theme_path: 'themes/contrib/zen',
@@ -85,8 +125,8 @@ addDrupalExtensions(twigOrTwing, {
   base_url: '/',
 
   // Override any of Drupal's default stream wrappers.
-  // Or add your own stream wrappers; new stream wrappers will be
-  // merged with the default ones.
+  // Or add your own stream wrappers; new stream wrappers will
+  // be merged with the default ones.
   streamWrapper: {
     'public://': 'sites/default/files',
     'private://': 'sites/default/private',
@@ -94,8 +134,8 @@ addDrupalExtensions(twigOrTwing, {
   },
 
   // Override any of Drupal's default date_format patterns.
-  // Or add your own custom formats; new formats will be merged
-  // with the default ones.
+  // Or add your own custom formats; new formats will be
+  // merged with the default ones.
   date_format: {
     long: 'Y-m-d H:i:s',
   },
@@ -125,7 +165,7 @@ The [official list of filters is in Drupal 9’s code](https://api.drupal.org/ap
 - `trans`<sup>2</sup>
 - `without`
 
-<sup>1</sup> This filter does not work the same as it does in Drupal; it just returns the input cast to a string using its `toString` method. It is implemented to keep Twig compilation from breaking when this Drupal-specific filter is used in Twig templates.
+<a id="render-note"></a><sup>1</sup> The `render` filter does not work the same as it does in Drupal; it just returns the input cast to a string using its `toString` method. It is implemented to keep Twig compilation from breaking when this Drupal-specific filter is used in Twig templates.
 
 <sup>2</sup> These filters do not work the same as they do in Drupal; they just return their input without modification. They are implemented to keep Twig compilation from breaking when these Drupal-specific filters are used in Twig templates.
 
@@ -143,7 +183,7 @@ The [official list of functions is in Drupal 9’s code](https://api.drupal.org/
 - `render_var`<sup>1</sup>
 - `url`<sup>2</sup>
 
-<sup>1</sup> This function does not work the same as it does in Drupal; it just returns the input cast to a string using its `toString` method. It is implemented to keep Twig compilation from breaking when this Drupal-specific function is used in Twig templates.
+<sup>1</sup> See the <a href="#render-note">note above about the `render` filter</a>.
 
 <sup>2</sup> These functions do not work the same as they do in Drupal; they just return their input without modification. They are implemented to keep Twig compilation from breaking when these Drupal-specific functions are used in Twig templates.
 
