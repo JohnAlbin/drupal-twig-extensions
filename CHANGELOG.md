@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0-beta.4](https://github.com/JohnAlbin/drupal-twig-extensions/compare/v1.0.0-beta.3...v1.0.0-beta.4) (2022-01-04)
+
+
+### Features
+
+* Add setup options for file_url function ([130a2e4](https://github.com/JohnAlbin/drupal-twig-extensions/commit/130a2e48889565f18a2e4c4349df8935c9d53f9f)), closes [#31](https://github.com/JohnAlbin/drupal-twig-extensions/issues/31)
+
+
+### Bug Fixes
+
+* Add dual support for CommonJS and ES Modules ([ad301fe](https://github.com/JohnAlbin/drupal-twig-extensions/commit/ad301feb19f345d51a3ac947b06be444046a2138)), closes [#46](https://github.com/JohnAlbin/drupal-twig-extensions/issues/46) [#43](https://github.com/JohnAlbin/drupal-twig-extensions/issues/43)
+* **Twing:** safe_join filter in Twing should join object values ([ea2531e](https://github.com/JohnAlbin/drupal-twig-extensions/commit/ea2531e9d9deb3b6f9fa8fca786707c791aa0491)), closes [#44](https://github.com/JohnAlbin/drupal-twig-extensions/issues/44)
+
 ## [1.0.0-beta.3](https://github.com/JohnAlbin/drupal-twig-extensions/compare/v1.0.0-beta.2...v1.0.0-beta.3) (2021-12-31)
 
 
