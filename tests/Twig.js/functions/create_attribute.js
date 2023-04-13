@@ -53,7 +53,7 @@ test(
 
 test('should return an Attribute object with methods', renderTemplateMacro, {
   template:
-    '<div{{ create_attribute().setAttribute("id", "example").addClass("class1", "class2") }}>',
+    '<div{{ create_attribute().setAttribute("id", "example").addClass(["class1", "class2"]) }}>',
   data: {},
   expected: '<div id="example" class="class1 class2">',
 });
