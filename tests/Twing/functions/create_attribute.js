@@ -13,7 +13,7 @@ test(
   },
 );
 
-test.failing(
+test(
   'should create an Attribute object with static parameters',
   renderTemplateMacro,
   {
@@ -58,13 +58,13 @@ test('should return an Attribute object with methods', renderTemplateMacro, {
   expected: '<div id="example" class="class1 class2">',
 });
 
-test.failing(
+test(
   'should return an Attribute object with accessible properties',
   renderTemplateMacro,
   {
     template:
-      '{% set attributes = create_attribute({ "id": "example" }) %}id:{{ attributes.id }}:',
+      '{% set attributes = create_attribute({ "id": "example", "class": ["foo", "bar"] }) %}id:{{ attributes.id }}:class:{{ attributes.class }}:',
     data: {},
-    expected: 'id:example:',
+    expected: 'id:example:class:foo bar:',
   },
 );
