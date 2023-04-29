@@ -68,3 +68,10 @@ test(
     expected: 'id:example:class:foo bar:',
   },
 );
+
+test.failing('should work with the `without` filter', renderTemplateMacro, {
+  template:
+    '<div{{ create_attribute().setAttribute("id", "example").addClass(["class1", "class2"])|without("class") }}>',
+  data: {},
+  expected: '<div id="example">',
+});
