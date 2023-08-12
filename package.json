@@ -43,12 +43,12 @@
       "require": "./dist/filters/twing.cjs"
     },
     "./functions/twig": {
-      "import": "./lib/filters/twig.js",
-      "require": "./dist/filters/twig.cjs"
+      "import": "./lib/functions/twig.js",
+      "require": "./dist/functions/twig.cjs"
     },
     "./functions/twing": {
-      "import": "./lib/filters/twing.js",
-      "require": "./dist/filters/twing.cjs"
+      "import": "./lib/functions/twing.js",
+      "require": "./dist/functions/twing.cjs"
     },
     "./helpers/twig": {
       "import": "./lib/helpers/twig.js",
