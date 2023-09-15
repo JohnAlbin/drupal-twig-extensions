@@ -43,7 +43,7 @@ Don’t worry. You can still submit a Pull Request and if you don’t properly u
 │   │        │  │               tense. Starts with a capital
 │   │        │  │               letter. Doesn't end in a
 │   │        │  │               period.
-⎡‾‾⎤⎡‾‾‾‾‾‾‾⎤⎡⎤ ⎡‾‾‾‾‾‾‾‾‾‾‾‾⎤
+⎡‾‾⎤⎡‾‾‾‾‾‾‾⎤│: ⎡‾‾‾‾‾‾‾‾‾‾‾‾⎤
 
 feat(options)!: Add hat wobble
 
