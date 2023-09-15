@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0-beta.5](https://github.com/JohnAlbin/drupal-twig-extensions/compare/v1.0.0-beta.4...v1.0.0-beta.5) (2023-09-15)
+
+
+### Bug Fixes
+
+* Wrong export path for "functions" ([f59124f](https://github.com/JohnAlbin/drupal-twig-extensions/commit/f59124f3a1a8b182472384c9b068e44e708c0737)), closes [#55](https://github.com/JohnAlbin/drupal-twig-extensions/issues/55)
+
 ## [1.0.0-beta.4](https://github.com/JohnAlbin/drupal-twig-extensions/compare/v1.0.0-beta.3...v1.0.0-beta.4) (2022-01-04)
 
 
