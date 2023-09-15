@@ -7,12 +7,12 @@ module.exports = {
   plugins: ['unused-imports'],
   root: true,
   env: {
-    es2020: true,
+    es2021: true,
     node: true,
   },
   parserOptions: {
     sourceType: 'module',
-    ecmaVersion: 2020,
+    ecmaVersion: 13,
   },
   rules: {
     'import/extensions': ['error', 'ignorePackages'],
