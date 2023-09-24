@@ -13,7 +13,7 @@ test(
   },
 );
 
-test.failing(
+test(
   'should create an Attribute object with static parameters',
   renderTemplateMacro,
   {
@@ -51,24 +51,27 @@ test(
   },
 );
 
-test.failing(
-  'should return an Attribute object with methods',
-  renderTemplateMacro,
-  {
-    template:
-      '<div{{ create_attribute().setAttribute("id", "example").addClass("class1", "class2") }}>',
-    data: {},
-    expected: '<div id="example" class="class1 class2">',
-  },
-);
+test('should return an Attribute object with methods', renderTemplateMacro, {
+  template:
+    '<div{{ create_attribute().setAttribute("id", "example").addClass(["class1", "class2"]) }}>',
+  data: {},
+  expected: '<div id="example" class="class1 class2">',
+});
 
 test(
   'should return an Attribute object with accessible properties',
   renderTemplateMacro,
   {
     template:
-      '{% set attributes = create_attribute({ "id": "example" }) %}id:{{ attributes.id }}:',
+      '{% set attributes = create_attribute({ "id": "example", "class": ["foo", "bar"] }) %}id:{{ attributes.id }}:class:{{ attributes.class }}:',
     data: {},
-    expected: 'id:example:',
+    expected: 'id:example:class:foo bar:',
   },
 );
+
+test.failing('should work with the `without` filter', renderTemplateMacro, {
+  template:
+    '<div{{ create_attribute().setAttribute("id", "example").addClass(["class1", "class2"])|without("class") }}>',
+  data: {},
+  expected: '<div id="example">',
+});
