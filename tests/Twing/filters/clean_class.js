@@ -106,5 +106,6 @@ test('should cache results', async (t) => {
     template,
     data,
     expected,
+    config,
   });
 });
