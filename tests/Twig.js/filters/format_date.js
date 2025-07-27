@@ -43,7 +43,7 @@ test('should use the given custom format', renderTemplateMacro, {
   expected: date(format, data.date),
 });
 
-test('should use a format added from config', async (t) => {
+test('should use a format added from config', (t) => {
   t.plan(4);
 
   const specialFormat = '\\F\\r\\o\\m \\c\\o\\n\\f\\i\\g: Y-m-d';
@@ -62,7 +62,7 @@ test('should use a format added from config', async (t) => {
   t.deepEqual(state.dateFormats.special, specialFormat);
 
   // Confirm the config affects rendering.
-  await renderTemplateMacro.exec(t, {
+  renderTemplateMacro.exec(t, {
     template: '{{ date|format_date("special") }}',
     data,
     expected: 'From config: 2002-06-29',

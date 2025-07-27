@@ -1,16 +1,19 @@
 import test from 'ava';
-import { createArrayLoader, createEnvironment } from 'twing';
+import {
+  createSynchronousArrayLoader,
+  createSynchronousEnvironment,
+} from 'twing';
 import state from '#config';
 import { addDrupalExtensions } from '#twing';
 
 export const setupTwingBefore = () => {};
 
-export const renderTemplateMacro = test.macro(async (t, options) => {
+export const renderTemplateMacro = test.macro((t, options) => {
   const templateName = 'inline_template';
-  const loader = createArrayLoader({
+  const loader = createSynchronousArrayLoader({
     [templateName]: options.template,
   });
-  const twingEnvironment = createEnvironment(loader, {
+  const twingEnvironment = createSynchronousEnvironment(loader, {
     autoescape: false,
   });
 
@@ -25,15 +28,12 @@ export const renderTemplateMacro = test.macro(async (t, options) => {
       options.config.schemePath,
     );
   }
-  const actual = await twingEnvironment.render(
-    templateName,
-    options.data || {},
-  );
+  const actual = twingEnvironment.render(templateName, options.data || {});
 
   t.is(actual, options.expected);
 });
 
-export const renderWithConfigMacro = test.macro(async (t, options) => {
+export const renderWithConfigMacro = test.macro((t, options) => {
   const originalBaseUrl = state.baseUrl;
   const originalSchemePath =
     state.streamWrapper[options.schemeName ? options.schemeName : 'public://'];
@@ -82,7 +82,7 @@ export const renderWithConfigMacro = test.macro(async (t, options) => {
   }
 
   // Confirm the config affects rendering.
-  await renderTemplateMacro.exec(t, {
+  renderTemplateMacro.exec(t, {
     template: options.template,
     config: config,
     data: options.data,

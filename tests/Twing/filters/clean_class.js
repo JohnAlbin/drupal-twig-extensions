@@ -89,7 +89,7 @@ test('should enforce Drupal coding standards', renderTemplateMacro, {
   expected: 'class-name--ü',
 });
 
-test('should cache results', async (t) => {
+test('should cache results', (t) => {
   t.plan(2);
 
   const template = '{{ class|clean_class }}';
@@ -102,7 +102,7 @@ test('should cache results', async (t) => {
   // Cache a value that can't be created using clean_class.
   config.cleanClassCache[data.class] = expected;
 
-  await renderTemplateMacro.exec(t, {
+  renderTemplateMacro.exec(t, {
     template,
     data,
     expected,

@@ -16,7 +16,7 @@ test.serial('should render while ignoring arguments', renderTemplateMacro, {
   expected: 'This is the stark theme!',
 });
 
-test.serial('should use the theme added from config', async (t) => {
+test.serial('should use the theme added from config', (t) => {
   const activeTheme = 'myCustomTheme';
   const originalTheme = state.activeTheme;
 
@@ -38,7 +38,7 @@ test.serial('should use the theme added from config', async (t) => {
   t.deepEqual(state.activeTheme, activeTheme);
 
   // Confirm the config affects rendering.
-  await renderTemplateMacro.exec(t, {
+  renderTemplateMacro.exec(t, {
     template: '{{ active_theme() }}',
     expected: activeTheme,
   });

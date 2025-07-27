@@ -1,6 +1,9 @@
 import test from 'ava';
 import date from 'locutus/php/datetime/date.js';
-import { createArrayLoader, createEnvironment } from 'twing';
+import {
+  createSynchronousArrayLoader,
+  createSynchronousEnvironment,
+} from 'twing';
 import state from '#config';
 import { setupTwingBefore, renderTemplateMacro } from '#twing-fixture';
 import { addDrupalExtensions } from '#twing';
@@ -43,7 +46,7 @@ test('should use the given custom format', renderTemplateMacro, {
   expected: date(format, data.date),
 });
 
-test('should use a format added from config', async (t) => {
+test('should use a format added from config', (t) => {
   t.plan(3);
 
   const specialFormat = '\\F\\r\\o\\m \\c\\o\\n\\f\\i\\g: Y-m-d';
@@ -54,10 +57,10 @@ test('should use a format added from config', async (t) => {
 
   const templateName = 'inline_template';
   // Confirm the config affects rendering.
-  const loader = createArrayLoader({
+  const loader = createSynchronousArrayLoader({
     [templateName]: '{{ date|format_date("special") }}',
   });
-  const twingEnvironment = createEnvironment(loader, {
+  const twingEnvironment = createSynchronousEnvironment(loader, {
     autoescape: false,
   });
 
@@ -66,7 +69,7 @@ test('should use a format added from config', async (t) => {
       special: specialFormat,
     },
   });
-  const actual = await twingEnvironment.render(templateName, data);
+  const actual = twingEnvironment.render(templateName, data);
 
   t.is(actual, 'From config: 2002-06-29');
 
