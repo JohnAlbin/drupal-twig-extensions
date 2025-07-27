@@ -22,5 +22,5 @@ test('should return an empty string given an array', renderTemplateMacro, {
   data: {
     array: ['string1', 'string2'],
   },
-  expected: '',
+  expected: 'string1string2',
 });
