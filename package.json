@@ -1,10 +1,10 @@
 {
-  "name": "drupal-twig-extensions",
-  "version": "1.0.0-beta.5",
+  "name": "@christianwiedemann/drupal-twig-extensions",
+  "version": "2.0.0-beta.2",
   "description": "JavaScript implementation of Drupal’s Twig extensions",
   "author": "John Albin Wilkins <virtually.johnalbin@gmail.com> (https://john.albin.net/)",
-  "homepage": "https://github.com/JohnAlbin/drupal-twig-extensions",
-  "repository": "https://github.com/JohnAlbin/drupal-twig-extensions.git",
+  "homepage": "https://github.com/KEY-TEC/drupal-twig-extensions",
+  "repository": "https://github.com/KEY-TEC/drupal-twig-extensions.git",
   "license": "(MIT OR GPL-2.0-only)",
   "keywords": [
     "Drupal",
@@ -89,6 +89,7 @@
   },
   "dependencies": {
     "drupal-attribute": "^1.0.2",
+    "is-plain-object": "^5.0.0",
     "locutus": "^2.0.16",
     "lodash.clonedeep": "^4.5.0"
   },
@@ -112,7 +113,7 @@
     "replace-in-file": "^7.0.1",
     "standard-version": "^9.5.0",
     "twig": "^1.16.0",
-    "twing": "^5.1.4"
+    "twing": "^7.2.1"
   },
   "c8": {
     "all": true,

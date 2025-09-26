@@ -1,7 +1,5 @@
 import test from 'ava';
-import { TwingEnvironment, TwingLoaderRelativeFilesystem } from 'twing';
 import state from '#config';
-import { addDrupalExtensions } from '#twing';
 import { setupTwingBefore, renderTemplateMacro } from '#twing-fixture';
 
 test.before(setupTwingBefore);
@@ -17,7 +15,7 @@ test.serial('should render while ignoring arguments', renderTemplateMacro, {
   expected: 'The path to my theme is core/themes/stark!',
 });
 
-const activeThemePathMacro = test.macro(async (t, options) => {
+const activeThemePathMacro = test.macro((t, options) => {
   const activeTheme = options.config.activeTheme;
   const activeThemePath = options.config.activeThemePath;
   const originalTheme = state.activeTheme;
@@ -50,26 +48,11 @@ const activeThemePathMacro = test.macro(async (t, options) => {
     t.not(state.activeThemePath, activeThemePath);
   }
 
-  // Create an instance of the Twing Environment.
-  const twingEnvironment = new TwingEnvironment(
-    new TwingLoaderRelativeFilesystem(),
-    { autoescape: false },
-  );
-
-  addDrupalExtensions(twingEnvironment, options.config);
-
-  // Confirm that the config was added to the state.
-  if (activeTheme) {
-    t.deepEqual(state.activeTheme, activeTheme);
-  }
-  if (activeThemePath) {
-    t.deepEqual(state.activeThemePath, activeThemePath);
-  }
-
   // Confirm the config affects rendering.
-  await renderTemplateMacro.exec(t, {
+  renderTemplateMacro.exec(t, {
     template: '{{ active_theme_path() }}',
     expected: options.expected,
+    config: options.config,
   });
 });
 

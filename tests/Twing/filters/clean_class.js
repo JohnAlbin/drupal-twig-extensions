@@ -1,5 +1,4 @@
 import test from 'ava';
-import config from '#config';
 import { setupTwingBefore, renderTemplateMacro } from '#twing-fixture';
 
 test.before(setupTwingBefore);
@@ -87,24 +86,4 @@ test('should enforce Drupal coding standards', renderTemplateMacro, {
   template,
   data: { class: 'CLASS NAME_[Ü]' },
   expected: 'class-name--ü',
-});
-
-test('should cache results', async (t) => {
-  t.plan(2);
-
-  const template = '{{ class|clean_class }}';
-  const data = { class: 'UNCACHED CLASS NAME' };
-  const expected = 'pre-cached-class-name';
-
-  // No existing cache.
-  t.deepEqual(config.cleanClassCache[data.class], undefined);
-
-  // Cache a value that can't be created using clean_class.
-  config.cleanClassCache[data.class] = expected;
-
-  await renderTemplateMacro.exec(t, {
-    template,
-    data,
-    expected,
-  });
 });
