@@ -9,7 +9,7 @@ The `drupal-twig-extensions` project uses semantic commit messages. A minor chan
 
 Don’t worry. You can still submit a Pull Request and if you don’t properly use semantic commit messages, we will edit the commits to add them. But we like them, so you might too.
 
-### Commit message format:
+### Format of the commit message:
 
 ```
 <type>(<scope>)<!>: <subject>
@@ -70,11 +70,11 @@ The `<type>` part of the commit message MUST be one of the following:
 
 - `feat`: **new feature** for the user, not a new feature for a build script
 - `fix`: **bug fix** for the user, not a fix to a build script
+- `docs`: **documentation** changes
 - `style`: **code formatting** like missing semicolons, etc.; no production code change
 - `refactor`: **refactoring production code** like renaming a variable
-- `docs`: **documentation** changes
 - `test`: **test suite changes** like adding missing tests, refactoring tests; no production code change
-- `chore`: **misc changes** like tooling changes (updating grunt tasks), etc.; no production code change
+- `chore`: **misc changes** like tooling changes, updating build configuration, etc.; no production code change
 
 **Important Note:** A single commit can only use one `<type>`, which means if a commit covers multiple `types`, it must be refactored into multiple atomic commits.
 
