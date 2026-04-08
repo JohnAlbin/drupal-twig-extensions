@@ -10,17 +10,17 @@ export const setupTwigBefore = (t) => {
   addDrupalExtensions(Twig);
 };
 
-export const renderTemplateMacro = test.macro(async (t, options) => {
-  const compiledTemplate = await t.context.twig({
+export const renderTemplateMacro = test.macro((t, options) => {
+  const compiledTemplate = t.context.twig({
     data: options.template,
   });
 
-  let actual = await compiledTemplate.render(options.data || {});
+  let actual = compiledTemplate.render(options.data || {});
 
   t.is(actual, options.expected);
 });
 
-export const renderWithConfigMacro = test.macro(async (t, options) => {
+export const renderWithConfigMacro = test.macro((t, options) => {
   const originalBaseUrl = state.baseUrl;
   const originalSchemePath =
     state.streamWrapper[options.schemeName ? options.schemeName : 'public://'];
@@ -78,7 +78,7 @@ export const renderWithConfigMacro = test.macro(async (t, options) => {
   }
 
   // Confirm the config affects rendering.
-  await renderTemplateMacro.exec(t, {
+  renderTemplateMacro.exec(t, {
     template: options.template,
     data: options.data,
     expected: options.expected,

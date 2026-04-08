@@ -13,27 +13,27 @@ const data = {
 };
 
 test('should remove the given element from an object', renderTemplateMacro, {
-  template: 'Keys without author: {{ quote|without("author")|keys }}',
+  template: 'Keys without author: {{ quote|without("author")|keys|join(",") }}',
   data,
   expected: 'Keys without author: content,date',
 });
 
 test('should remove multiple elements from an object', renderTemplateMacro, {
   template:
-    'Keys without content, date: {{ quote|without("content", "date")|keys }}',
+    'Keys without content, date: {{ quote|without("content", "date")|keys|join(",") }}',
   data,
   expected: 'Keys without content, date: author',
 });
 
 test('should handle arrays of elements to exclude', renderTemplateMacro, {
   template:
-    'Keys without content, date: {{ quote|without(["content", "date"])|keys }}',
+    'Keys without content, date: {{ quote|without(["content", "date"])|keys|join(",") }}',
   data,
   expected: 'Keys without content, date: author',
 });
 
 test('should handle an undefined input', renderTemplateMacro, {
-  template: 'No input: {{ nothing|without("content", "date")|join }}',
+  template: 'No input: {{ nothing|without("content", "date")|join(",") }}',
   data,
   expected: 'No input: ',
 });

@@ -17,7 +17,7 @@ test.serial('should render while ignoring arguments', renderTemplateMacro, {
   expected: 'The path to my theme is core/themes/stark!',
 });
 
-const activeThemePathMacro = test.macro(async (t, options) => {
+const activeThemePathMacro = test.macro((t, options) => {
   const activeTheme = options.config.activeTheme;
   const activeThemePath = options.config.activeThemePath;
   const originalTheme = state.activeTheme;
@@ -61,7 +61,7 @@ const activeThemePathMacro = test.macro(async (t, options) => {
   }
 
   // Confirm the config affects rendering.
-  await renderTemplateMacro.exec(t, {
+  renderTemplateMacro.exec(t, {
     template: '{{ active_theme_path() }}',
     expected: options.expected,
   });

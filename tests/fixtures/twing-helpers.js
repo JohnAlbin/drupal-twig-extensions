@@ -1,35 +1,39 @@
 import test from 'ava';
-import { TwingEnvironment, TwingLoaderRelativeFilesystem } from 'twing';
+import {
+  createSynchronousArrayLoader,
+  createSynchronousEnvironment,
+} from 'twing';
 import state from '#config';
 import { addDrupalExtensions } from '#twing';
 
-export const setupTwingBefore = (t) => {
-  // Create an instance of the Twing Environment.
-  const twingEnvironment = new TwingEnvironment(
-    new TwingLoaderRelativeFilesystem(),
-    { autoescape: false },
-  );
+export const setupTwingBefore = () => {};
 
-  // Add the extensions for Drupal.
-  addDrupalExtensions(twingEnvironment);
+export const renderTemplateMacro = test.macro((t, options) => {
+  const templateName = 'inline_template';
+  const loader = createSynchronousArrayLoader({
+    [templateName]: options.template,
+  });
+  const twingEnvironment = createSynchronousEnvironment(loader, {
+    autoescape: false,
+  });
 
-  t.context.twingEnvironment = twingEnvironment;
-};
-
-export const renderTemplateMacro = test.macro(async (t, options) => {
-  const twingEnvironment =
-    options.twingEnvironment ?? t.context.twingEnvironment;
-
-  const compiledTemplate = await twingEnvironment.createTemplate(
-    options.template,
-  );
-
-  let actual = await compiledTemplate.render(options.data || {});
+  addDrupalExtensions(twingEnvironment, options.config || {});
+  // Confirm that the config was added to the state.
+  if (options.config?.baseUrl) {
+    t.not(state.baseUrl, options.config.baseUrl);
+  }
+  if (options.config?.schemeName && options.schemeName) {
+    t.deepEqual(
+      state.streamWrapper[options.schemeName],
+      options.config.schemePath,
+    );
+  }
+  const actual = twingEnvironment.render(templateName, options.data || {});
 
   t.is(actual, options.expected);
 });
 
-export const renderWithConfigMacro = test.macro(async (t, options) => {
+export const renderWithConfigMacro = test.macro((t, options) => {
   const originalBaseUrl = state.baseUrl;
   const originalSchemePath =
     state.streamWrapper[options.schemeName ? options.schemeName : 'public://'];
@@ -60,13 +64,7 @@ export const renderWithConfigMacro = test.macro(async (t, options) => {
   if (options.schemeName) {
     t.not(state.streamWrapper[options.schemeName], options.schemePath);
   }
-
-  // Create an instance of the Twing Environment.
-  const twingEnvironment = new TwingEnvironment(
-    new TwingLoaderRelativeFilesystem(),
-    { autoescape: false },
-  );
-
+  t.not(options.baseUrl, 'system');
   // Add config.
   const config = {};
   if (options.baseUrl) {
@@ -77,25 +75,16 @@ export const renderWithConfigMacro = test.macro(async (t, options) => {
       [options.schemeName]: options.schemePath,
     };
   }
-  addDrupalExtensions(twingEnvironment, config);
 
   // Ensure our baseUrl has a trailing slash.
   if (options.baseUrl && options.baseUrl.slice(-1) !== '/') {
     options.baseUrl += '/';
   }
 
-  // Confirm that the config was added to the state.
-  if (options.baseUrl) {
-    t.deepEqual(state.baseUrl, options.baseUrl);
-  }
-  if (options.schemeName) {
-    t.deepEqual(state.streamWrapper[options.schemeName], options.schemePath);
-  }
-
   // Confirm the config affects rendering.
-  await renderTemplateMacro.exec(t, {
-    twingEnvironment,
+  renderTemplateMacro.exec(t, {
     template: options.template,
+    config: config,
     data: options.data,
     expected: options.expected,
   });
