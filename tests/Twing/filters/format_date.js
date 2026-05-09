@@ -1,5 +1,5 @@
 import test from 'ava';
-import date from 'locutus/php/datetime/date.js';
+import { date } from 'locutus/php/datetime/date';
 import { TwingEnvironment, TwingLoaderRelativeFilesystem } from 'twing';
 import state from '#config';
 import { addDrupalExtensions } from '#twing';
